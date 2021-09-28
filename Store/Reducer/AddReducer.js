@@ -1,7 +1,7 @@
 import React,{useEffect,useReducer} from "react";
 import app from "../../fireBase/config";
 import {ADD} from '../Action/AddAction';
-import { FetchAction,FetchData } from "../Action/FetchDataAction";
+import {FetchData } from "../Action/FetchDataAction";
 
 
 const initialState = {
@@ -14,6 +14,8 @@ export default (state=initialState,action)=>{
         case ADD:
             return {...state,tasks: [...state.tasks,action.tasks]}
 
+        case FetchData:
+            return {...state,tasks: action.tasks}
         default:
             return state;
     }

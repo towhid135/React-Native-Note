@@ -15,11 +15,13 @@ import ViewItem from '../Component/UI/ViewItem';
 import {useSelector,useDispatch} from 'react-redux';
 import { FetchAction } from '../Store/Action/FetchDataAction';
 
-const renderListItem = itemData =>{
-
-}
 
 const HomeScreen = props => {
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(FetchAction())
+    },[dispatch])
+
 
     let TouchComponent = TouchableOpacity;
     if(Platform.OS==='android' && Platform.Version >= 21)
