@@ -4,7 +4,7 @@ import {View,Text,StyleSheet} from 'react-native';
 const ViewItem = props =>{
     return (
         <View style={{...styles.textStyle,...props.style}} >
-            <Text>{props.children}</Text>
+            <Text style={props.textStyle}>{props.children}</Text>
         </View > 
     );
 }
