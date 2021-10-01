@@ -5,6 +5,8 @@ import {useSelector,useDispatch} from 'react-redux';
 import { AddAction } from '../Store/Action/AddAction';
 import EditAbleCustomButton from '../Component/UI/CustomHeaderButton';
 import {EditAction} from '../Store/Action/EditAction';
+import {HeaderButtons,Item} from 'react-navigation-header-buttons';
+import { CustomHeaderButton } from '../Component/UI/CustomHeaderButton';
 
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
@@ -32,6 +34,7 @@ const formReducer = (state,action) =>{
 }
 
 const AddScreen = props => {
+
     const dispatch = useDispatch();
     //console.log('addmode',props.route.params);
     const initialState = {
@@ -97,27 +100,36 @@ const AddScreen = props => {
             description: currentState.description
         };
         dispatch(EditAction(editedData));
+        props.navigation.goBack();
+    }
+    const settingsHandler = () =>{
+        props.navigation.navigate('settings')
     }
 
 
 
 
     if(currentState.addMode) {
-        const addButton = (
-            <EditAbleCustomButton 
-                name = 'AddButton'
-                iconName = 'md-save'
-                iconSize = {32}
-                color = 'black'
-                addFunc = {submitHandler}
-           />
-            )
-        selectedButton = addButton;
         useLayoutEffect(()=>{
             props.navigation.setOptions({
                 headerRight: () => {
                     return(
-                      selectedButton
+                      <HeaderButtons HeaderButtonComponent={CustomHeaderButton} >
+                          <Item
+                          name = 'settingsButton'
+                          iconName = 'md-settings'
+                          iconSize = {32}
+                          color = 'black'
+                          onPress = {settingsHandler}
+                          />
+                          <Item 
+                          name = 'AddButton'
+                          iconName = 'md-save'
+                          iconSize = {32}
+                          color = 'black'
+                          onPress = {submitHandler}
+                          />
+                      </HeaderButtons>
                     )
                 }
             })

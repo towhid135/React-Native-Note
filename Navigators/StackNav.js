@@ -2,8 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../Screens/HomeScreen";
 import AddScreen from "../Screens/AddScreen";
-import TaskViewScreen from "../Screens/TaskViewScreen";
-import EditScreen from "../Screens/EditScreen";
+import SettingsScreen from "../Screens/SettingsScreen";
 
 const StackNav = props => {
     const Stack = createStackNavigator();
@@ -18,16 +17,10 @@ const StackNav = props => {
               name = "Add"
               component={AddScreen}
              />
-    
             <Stack.Screen 
-            name = 'singleTaskViewScreen'
-            component={TaskViewScreen}
-            options={{title:'Your Task'}}
-            />
-            <Stack.Screen 
-             name = 'EditScreen'
-             component={EditScreen}
-             options={{title:"Edit Task"}}
+             name='settings'
+             component={SettingsScreen}
+             options={{title:'Task Settings'}}
             />
             
         </Stack.Navigator>
