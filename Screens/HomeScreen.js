@@ -39,7 +39,11 @@ const HomeScreen = props => {
              activeOpacity={0.9}
              >
         <ViewItem 
-            style={styles.ViewItemStyle} 
+            style={{
+                ...styles.ViewItemStyle,
+                backgroundColor:itemData.item.pageColor,
+                borderColor: itemData.item.pageColor
+            }} 
             textStyle={styles.viewItemText}
         >
         {itemData.item.title}
@@ -121,8 +125,6 @@ const styles = StyleSheet.create({
     },
     ViewItemStyle:{
         borderWidth: 1,
-        borderColor: Color.lightNaviBlue,
-        backgroundColor: Color.lightNaviBlue,
         borderRadius: 5,
         shadowColor: 'black',
         shadowOffset: {width:0,height:0.5},

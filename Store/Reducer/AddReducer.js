@@ -14,6 +14,7 @@ const initialState = {
 export default (state=initialState,action)=>{
     switch(action.type){
         case ADD:
+            console.log('page color in action.tasks', action.tasks.pageColor);
             return {...state,tasks: [...state.tasks,action.tasks]}
 
         case FetchData:

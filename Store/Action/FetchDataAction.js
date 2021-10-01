@@ -16,7 +16,8 @@ export const FetchAction = () =>{
             const Newdata = {
                 id: key,
                 description: fetchedData[key].description,
-                title: fetchedData[key].title
+                title: fetchedData[key].title,
+                pageColor: fetchedData[key].pageColor
             }
             allTasks.push(Newdata);
         }

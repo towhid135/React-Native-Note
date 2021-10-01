@@ -1,4 +1,5 @@
 import React from "react";
+import PageColor from "../../Constants/PageColor";
 export const ADD = "ADD";
 
 export const AddAction = (titleAndDes) =>{
@@ -12,7 +13,8 @@ export const AddAction = (titleAndDes) =>{
         },
         body: JSON.stringify({
             title: titleAndDes.title, 
-            description: titleAndDes.description
+            description: titleAndDes.description,
+            pageColor: titleAndDes.pageColor
         })
     })
     //getting responsed data
@@ -23,7 +25,9 @@ export const AddAction = (titleAndDes) =>{
             tasks: {
                 id: resData.name, 
                 title: titleAndDes.title, 
-                description: titleAndDes.description
+                description: titleAndDes.description,
+                pageColor: titleAndDes.pageColor
+
             }
         })
     }

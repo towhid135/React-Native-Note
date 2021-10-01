@@ -11,7 +11,7 @@ const Width = Dimensions.get('window').width;
 
 const ColorCircle = props =>{
     return (
-    <View>
+    <View style = {styles.circleContainer}>
         <TouchableHighlight
             style={{...styles.greenStyle,...props.style}}
             underlayColor= 'null'
@@ -29,6 +29,9 @@ const styles = StyleSheet.create({
         height: (Width * 0.1),
         borderRadius: (Width * 0.1) * 0.5,
         borderColor: 'black',
+    },
+    circleContainer:{
+        padding: 10,
     }
 })
 
