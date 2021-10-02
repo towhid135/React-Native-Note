@@ -7,10 +7,11 @@ export const EditAction = (EditDataObj) =>{
     return async dispatch => {
         const Id = EditDataObj.id;
         console.log('edit Data id',EditDataObj.id);
-        await app.database().ref('/todos/'+Id).update(
+        app.database().ref('/todos/'+Id).update(
             {
                 'title':EditDataObj.title,
-                 'description': EditDataObj.description
+                 'description': EditDataObj.description,
+                 'pageColor': EditDataObj.pageColor
             }
             )
         dispatch({type:EDIT,editData: EditDataObj})

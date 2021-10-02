@@ -8,7 +8,8 @@ import ColorCircle from "../Component/UI/ColorCircle";
 import PageColor from "../Constants/PageColor";
 import EditAbleCustomButton from "../Component/UI/CustomHeaderButton";
 import {useSelector,useDispatch} from 'react-redux'
-import { SettingsAction} from "../Store/Action/SettingsAction";
+import {EditSettingsAction} from "../Store/Action/SettingsAction";
+
 //action type
 for (key in PageColor){
     var key = String(key);
@@ -27,10 +28,10 @@ const formReducer = (state,action) =>{
     }
 }
 
-const SettingsScreen = props =>{
-    let savedPageColor = useSelector((state) => state.allTask.settings.selectedPageColor);
+const EditSettingsScreen = props =>{
+    let savedPageColor = props.route.params.colorCode;
 
-    //console.log('savePageColor',savedPageColor);
+    console.log('savePageColor',savedPageColor);
 
     const dispatch = useDispatch();
 
@@ -63,12 +64,11 @@ const SettingsScreen = props =>{
         [PageColor.darkSlate] : PageColor.darkSlate===savedPageColor ? 4 : 0,
         [PageColor.blueEyes] : PageColor.blueEyes===savedPageColor ? 4 : 0,
         [PageColor.seaGreen] : PageColor.seaGreen===savedPageColor ? 4 : 0,
-        
       }
    }
 
    const [currentState,DISPATCH] = useReducer(formReducer,initialState)
-   //console.log('saved value from currentState',currentState.pageColor[savedPageColor])
+   console.log('saved value from currentState',currentState.pageColor[savedPageColor])
 
    const onCircleSelect = (actionType) =>{
        let newSelectedColor = {};
@@ -104,7 +104,7 @@ const SettingsScreen = props =>{
        allColor.push(CircleCreate(key));
    }
 
-   const saveColor = () =>{
+   const saveColor = () => {
        let selectedPageColor=null;
        for (key in currentState.pageColor){
            if(currentState.pageColor[key] === 4){
@@ -115,8 +115,8 @@ const SettingsScreen = props =>{
       const allPageSettings = {
           pageColor: selectedPageColor
       }
-      dispatch(SettingsAction(allPageSettings));
-      props.navigation.navigate('Add');
+      dispatch(EditSettingsAction(allPageSettings));
+      props.navigation.navigate({name: 'Add',params:{editMode:true}});
    }
 
    return (
@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
    container:{
        flex: 1,
        flexDirection: 'column',
-       backgroundColor: 'white'
     },
     pageColorStyle:{
         //flex: 1,
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
         margin: 10,
         borderColor: PageColor.daySkyBlue,
         borderWidth: 1,
-        flexWrap: 'wrap',
+        flexWrap: 'wrap'
     },
     pageTitleStyle:{
         margin: 10,
@@ -159,4 +158,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default SettingsScreen;
+export default EditSettingsScreen;

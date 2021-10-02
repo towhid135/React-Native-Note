@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../Screens/HomeScreen";
 import AddScreen from "../Screens/AddScreen";
 import SettingsScreen from "../Screens/SettingsScreen";
+import EditSettingsScreen from "../Screens/EditSettingsScreen";
 
 const StackNav = props => {
     const Stack = createStackNavigator();
@@ -21,6 +22,11 @@ const StackNav = props => {
              name='settings'
              component={SettingsScreen}
              options={{title:'Task Settings'}}
+            />
+            <Stack.Screen 
+             name = 'editSettings'
+             component = {EditSettingsScreen}
+             options = {{title: 'Task Settings'}}
             />
             
         </Stack.Navigator>

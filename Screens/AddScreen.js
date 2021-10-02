@@ -8,6 +8,7 @@ import {EditAction} from '../Store/Action/EditAction';
 import {HeaderButtons,Item} from 'react-navigation-header-buttons';
 import { CustomHeaderButton } from '../Component/UI/CustomHeaderButton';
 import PageColor from '../Constants/PageColor';
+import TextItem from '../Component/UI/TextItem';
 
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
@@ -54,6 +55,8 @@ const AddScreen = props => {
 
     const selectedTaskId = currentState.taskId;
     let selectedButton=null;
+    const addPageColor = useSelector((state) => state.allTask.settings.selectedPageColor)
+    const editPageColor = useSelector((state) => state.allTask.settings.selectedEditPageColor)
 
     let selectedTask={};
     //find title and description
@@ -87,7 +90,7 @@ const AddScreen = props => {
     }
 
     const submitHandler = () =>{
-        let finalPageColor = props.route.params.pageColor;
+        let finalPageColor = addPageColor;
         console.log('page color in submit handler',finalPageColor);
         dispatch(AddAction({
             title:currentState.title,
@@ -114,7 +117,8 @@ const AddScreen = props => {
         const editedData = {
             id: currentState.taskId,
             title: currentState.title,
-            description: currentState.description
+            description: currentState.description,
+            pageColor: editPageColor
         };
         dispatch(EditAction(editedData));
         props.navigation.goBack();
@@ -123,8 +127,11 @@ const AddScreen = props => {
         props.navigation.navigate('settings')
     }
 
-
-
+    const editSettingsHandler = () =>{
+        props.navigation.navigate({name:'editSettings',
+            params: {colorCode:selectedTask.pageColor}
+        })
+    }
 
     if(currentState.addMode) {
         useLayoutEffect(()=>{
@@ -177,40 +184,55 @@ const AddScreen = props => {
     }
 
     else{
-        const addButton = (
-            <EditAbleCustomButton 
-                name = 'AddButton'
-                iconName = 'md-save'
-                iconSize = {32}
-                color = 'black'
-                addFunc = {editButtonHandler}
-           />
-            )
-        selectedButton = addButton;
         useLayoutEffect(()=>{
             props.navigation.setOptions({
                 headerRight: () => {
                     return(
-                      selectedButton
+                      <HeaderButtons HeaderButtonComponent={CustomHeaderButton} >
+                          <Item
+                          name = 'editSettingsButton'
+                          iconName = 'md-settings'
+                          iconSize = {32}
+                          color = 'black'
+                          onPress = {editSettingsHandler}
+                          />
+                          <Item 
+                          name = 'editButton'
+                          iconName = 'md-save'
+                          iconSize = {32}
+                          color = 'black'
+                          onPress = {editButtonHandler}
+                          />
+                      </HeaderButtons>
                     )
-                },
-                title: 'Edit Your Task'
+                }
             })
         })
     }
+    
+    //console.log('from AddScreen', currentState.editMode);
 
-
+    const inputItems = (
+        <InputItem 
+        title={(currentState.viewMode) ? selectedTask.title : currentState.title } 
+        description={(currentState.viewMode) ? selectedTask.description : currentState.description } 
+        titleChange={(currentState.addMode || currentState.editMode) ? titleChangeHandler : null} 
+        desChange={(currentState.addMode || currentState.editMode) ? descriptionChangeHandler : null} 
+        editPermission = {(currentState.addMode || currentState.editMode) ? true : false}
+        titleStyle={currentState.viewMode ? styles.titleStyle : null}
+        />
+    )
+   const TextItemsView = (
+       <TextItem 
+         title={selectedTask.title}
+         description={selectedTask.description}
+         taskID = {selectedTaskId}
+       />
+   )
 
     return (
-        <View style={{backgroundColor: props.route.params.pageColor}}>
-            <InputItem 
-            title={(currentState.viewMode) ? selectedTask.title : currentState.title } 
-            description={(currentState.viewMode) ? selectedTask.description : currentState.description } 
-            titleChange={(currentState.addMode || currentState.editMode) ? titleChangeHandler : null} 
-            desChange={(currentState.addMode || currentState.editMode) ? descriptionChangeHandler : null} 
-            editPermission = {(currentState.addMode || currentState.editMode) ? true : false}
-            titleStyle={currentState.viewMode ? styles.titleStyle : null}
-            />
+        <View style={{backgroundColor: currentState.addMode ? addPageColor : (props.route.params.editMode ? editPageColor : selectedTask.pageColor) }}>
+            {currentState.viewMode ? TextItemsView : inputItems}
         </View>
     );
 }
