@@ -3,5 +3,9 @@ export default {
     GemunuLibreLight: 'GemunuLibreLight',
     GemunuLibreRegular: 'GemunuLibreRegular',
     MontserratBold: 'MontserratBold',
-    MontserratBoldItalic:'MontserratBoldItalic'
+    MontserratBoldItalic:'MontserratBoldItalic',
+    MontserratExtraLight: 'MontserratExtraLight',
+    MontserratExtraLightItalic: 'MontserratExtraLightItalic',
+    MontserratItalic: 'MontserratItalic',
+    MontserratLight: 'MontserratLight'
 }

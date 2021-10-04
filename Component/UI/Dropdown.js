@@ -56,7 +56,7 @@ const Dropdown = props =>{
              {visible && <View 
              style={styles.modalView}
              >
-                 <ScrollView style={{height: "60%"}}>
+                 <ScrollView style={{height: "70%"}}>
                    {allFont}
                   </ScrollView>
              </View>

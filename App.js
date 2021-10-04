@@ -14,7 +14,12 @@ const fetchFont = () =>{
     'GemunuLibreLight': require('./assets/Fonts/Gemunu/GemunuLibre-Light.ttf'),
     'GemunuLibreRegular': require('./assets/Fonts/Gemunu/GemunuLibre-Regular.ttf'),
     'MontserratBold': require('./assets/Fonts/Montserrat/Montserrat-Bold.ttf'),
-    'MontserratBoldItalic': require('./assets/Fonts/Montserrat/Montserrat-BoldItalic.ttf')
+    'MontserratBoldItalic': require('./assets/Fonts/Montserrat/Montserrat-BoldItalic.ttf'),
+    'MontserratExtraLight': require('./assets/Fonts/Montserrat/Montserrat-ExtraLight.ttf'),
+    'MontserratExtraLightItalic': require('./assets/Fonts/Montserrat/Montserrat-ExtraLightItalic.ttf'),
+    'MontserratItalic': require('./assets/Fonts/Montserrat/Montserrat-Italic.ttf'),
+    'MontserratLight': require('./assets/Fonts/Montserrat/Montserrat-Light.ttf'),
+    
      
   })
 }
