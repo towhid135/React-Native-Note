@@ -1,3 +1,5 @@
+import TextColor from "../../Constants/TextColor";
+
 export const FetchData = 'FetchData';
 export const stillFetching = 'stillFetching';
 
@@ -17,7 +19,8 @@ export const FetchAction = () =>{
                 id: key,
                 description: fetchedData[key].description,
                 title: fetchedData[key].title,
-                pageColor: fetchedData[key].pageColor
+                pageColor: fetchedData[key].pageColor,
+                textColor: fetchedData[key].textColor,
             }
             allTasks.push(Newdata);
         }

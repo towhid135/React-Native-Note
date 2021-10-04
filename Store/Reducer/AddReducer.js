@@ -11,7 +11,9 @@ const initialState = {
     isStillFetching: true,
     settings:{
         selectedPageColor: null,
-        selectedEditPageColor: null
+        selectedEditPageColor: null,
+        selectedTextColor: null,
+        editTextColor: null,
     }
 }
 //console.log('initial state',initialState.tasks);
@@ -27,7 +29,9 @@ export default (state=initialState,action)=>{
             }
 
         case FetchData:
-            return {...state,tasks: action.tasks}
+            return {...state,
+                tasks: action.tasks,
+            }
         case stillFetching:
             return {...state,isStillFetching: action.isFetching}
         case EDIT:
@@ -36,13 +40,15 @@ export default (state=initialState,action)=>{
             return {...state,tasks: filteredList}
         case SET_PAGE_COLOR:
             return {...state,settings: {...state.settings,
-                selectedPageColor: action.allSettings.pageColor
+                selectedPageColor: action.allSettings.pageColor,
+                selectedTextColor: action.allSettings.textColor,
             }}
         case SET_EDIT_PAGE_COLOR:
             return {
                     ...state, settings: {
                     ...state.settings,
-                    selectedEditPageColor: action.allEditSettings.pageColor
+                    selectedEditPageColor: action.allEditSettings.pageColor,
+                    editTextColor: action.allEditSettings.textColor,
                 }
             }
         default:

@@ -14,7 +14,8 @@ export const AddAction = (titleAndDes) =>{
         body: JSON.stringify({
             title: titleAndDes.title, 
             description: titleAndDes.description,
-            pageColor: titleAndDes.pageColor!==null ? titleAndDes.pageColor : PageColor.compositeColor1
+            pageColor: titleAndDes.pageColor!==null ? titleAndDes.pageColor : PageColor.compositeColor1,
+            textColor: titleAndDes.textColor!==null ? titleAndDes.textColor : 'black'
         })
     })
     //getting responsed data
@@ -26,7 +27,8 @@ export const AddAction = (titleAndDes) =>{
                 id: resData.name, 
                 title: titleAndDes.title, 
                 description: titleAndDes.description,
-                pageColor: titleAndDes.pageColor !== null ? titleAndDes.pageColor : PageColor.compositeColor1
+                pageColor: titleAndDes.pageColor !== null ? titleAndDes.pageColor : PageColor.compositeColor1,
+                textColor: titleAndDes.textColor!==null ? titleAndDes.textColor : 'black'
 
             }
         })

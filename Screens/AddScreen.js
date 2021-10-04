@@ -7,7 +7,6 @@ import EditAbleCustomButton from '../Component/UI/CustomHeaderButton';
 import {EditAction} from '../Store/Action/EditAction';
 import {HeaderButtons,Item} from 'react-navigation-header-buttons';
 import { CustomHeaderButton } from '../Component/UI/CustomHeaderButton';
-import PageColor from '../Constants/PageColor';
 import TextItem from '../Component/UI/TextItem';
 
 const UPDATE_TITLE = 'UPDATE_TITLE';
@@ -55,8 +54,23 @@ const AddScreen = props => {
 
     const selectedTaskId = currentState.taskId;
     let selectedButton=null;
-    const addPageColor = useSelector((state) => state.allTask.settings.selectedPageColor)
-    const editPageColor = useSelector((state) => state.allTask.settings.selectedEditPageColor)
+
+    const CurrentPageSettings = useSelector((state) => state.allTask.settings);
+    const SavedPageSettings = useSelector((state) => state.allTask.tasks);
+    const EditedPageSettings = currentState.addMode ? null : SavedPageSettings.find((task) => task.id === selectedTaskId);
+
+    const addPageColor = CurrentPageSettings.selectedPageColor;
+    const editPageColor = currentState.addMode ? null : CurrentPageSettings.selectedEditPageColor!==null ? CurrentPageSettings.selectedEditPageColor : EditedPageSettings.pageColor;
+    const textColorToShow = CurrentPageSettings.selectedTextColor;
+    const editTextColorToShow = currentState.addMode ? null : CurrentPageSettings.editTextColor!==null ? CurrentPageSettings.editTextColor : EditedPageSettings.textColor;
+
+    console.log('edited page settings', EditedPageSettings);
+
+    //console.log('saved page settings', SavedPageSettings);
+
+    console.log('edit page color',editPageColor);
+
+    console.log('edit text color',editTextColorToShow);
 
     let selectedTask={};
     //find title and description
@@ -95,7 +109,8 @@ const AddScreen = props => {
         dispatch(AddAction({
             title:currentState.title,
             description:currentState.description,
-            pageColor: finalPageColor
+            pageColor: finalPageColor,
+            textColor: textColorToShow
         }))
         props.navigation.goBack();
     }
@@ -113,23 +128,29 @@ const AddScreen = props => {
             }
         })
     }
+
     const editButtonHandler = () =>{
         const editedData = {
             id: currentState.taskId,
             title: currentState.title,
             description: currentState.description,
-            pageColor: editPageColor
+            pageColor: editPageColor,
+            textColor: editTextColorToShow,
         };
         dispatch(EditAction(editedData));
         props.navigation.goBack();
     }
+
     const settingsHandler = () =>{
         props.navigation.navigate('settings')
     }
 
     const editSettingsHandler = () =>{
         props.navigation.navigate({name:'editSettings',
-            params: {colorCode:selectedTask.pageColor}
+            params: {
+                pageColorCode:selectedTask.pageColor,
+                textColorCode: selectedTask.textColor
+            }
         })
     }
 
@@ -219,7 +240,10 @@ const AddScreen = props => {
         titleChange={(currentState.addMode || currentState.editMode) ? titleChangeHandler : null} 
         desChange={(currentState.addMode || currentState.editMode) ? descriptionChangeHandler : null} 
         editPermission = {(currentState.addMode || currentState.editMode) ? true : false}
-        titleStyle={currentState.viewMode ? styles.titleStyle : null}
+        titleStyle={
+            (currentState.editMode) ? {...styles.titleStyle,color: editTextColorToShow} : {...styles.titleStyle,color:textColorToShow}
+        }
+        desStyle = {currentState.addMode ? {color: textColorToShow} : {color:editTextColorToShow} }
         />
     )
    const TextItemsView = (
@@ -227,6 +251,8 @@ const AddScreen = props => {
          title={selectedTask.title}
          description={selectedTask.description}
          taskID = {selectedTaskId}
+         titleStyle = {{color: editTextColorToShow}}
+         desStyle = {{color: editTextColorToShow}}
        />
    )
 

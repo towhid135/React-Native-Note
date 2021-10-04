@@ -9,11 +9,18 @@ import PageColor from "../Constants/PageColor";
 import EditAbleCustomButton from "../Component/UI/CustomHeaderButton";
 import {useSelector,useDispatch} from 'react-redux'
 import { SettingsAction} from "../Store/Action/SettingsAction";
+import TextColor from "../Constants/TextColor";
 //action type
 for (key in PageColor){
     var key = String(key);
 }
+
+for (key in TextColor){
+    var key = String(key);
+}
+
 const UPDATE = 'UPDATE';
+const UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR';
 
 const formReducer = (state,action) =>{
     switch(action.type){
@@ -22,15 +29,23 @@ const formReducer = (state,action) =>{
                 ...state,
                 pageColor: action.selectedColor
             }
+        case UPDATE_TEXT_COLOR:
+            return{
+                ...state,
+                textColor: action.selectedTextColor
+
+            }
         default:
             return state;
     }
 }
 
 const SettingsScreen = props =>{
-    let savedPageColor = useSelector((state) => state.allTask.settings.selectedPageColor);
-
-    //console.log('savePageColor',savedPageColor);
+    const savedPageColor = useSelector((state) => state.allTask.settings.selectedPageColor);
+    const savedTextColor = useSelector((state) => state.allTask.settings.selectedTextColor);
+    const selectedPageSettings = useSelector((state) => state.allTask.settings);
+    console.log('selectedPageSettings', selectedPageSettings);
+    console.log('saved text color from store',savedTextColor);
 
     const dispatch = useDispatch();
 
@@ -50,7 +65,7 @@ const SettingsScreen = props =>{
         })
     })
    const initialState = {
-      pageColor: {
+    pageColor: {
         [PageColor.lightGreen]: PageColor.lightGreen===savedPageColor ? 4 : 0,
         [PageColor.lightNaviBlue]: PageColor.lightNaviBlue===savedPageColor ? 4 : 0 ,
         [PageColor.compositeColor1]: PageColor.compositeColor1===savedPageColor ? 4 : 0,
@@ -64,11 +79,14 @@ const SettingsScreen = props =>{
         [PageColor.blueEyes] : PageColor.blueEyes===savedPageColor ? 4 : 0,
         [PageColor.seaGreen] : PageColor.seaGreen===savedPageColor ? 4 : 0,
         
-      }
+      },
+    textColor: {
+        [TextColor.black]: TextColor.black===savedTextColor ? 4 : 0,
+        [TextColor.white]: TextColor.white===savedTextColor ? 4 : 0
+    }
    }
 
    const [currentState,DISPATCH] = useReducer(formReducer,initialState)
-   //console.log('saved value from currentState',currentState.pageColor[savedPageColor])
 
    const onCircleSelect = (actionType) =>{
        let newSelectedColor = {};
@@ -84,8 +102,24 @@ const SettingsScreen = props =>{
         });
    }
 
-   let allColor = [];
+   const onTextColorSelect = (actionType) =>{
+    let newSelectedTextColor = {};
+    const colorType = TextColor[actionType];
+    for (key in currentState.textColor){
+        if(key === colorType) newSelectedTextColor[colorType] = 4;
+        else newSelectedTextColor[key] = 0;
+    }
+    //console.log('PageColor of actionType',colorType);
+    DISPATCH({
+        type: UPDATE_TEXT_COLOR,
+        selectedTextColor: newSelectedTextColor
+     });
+   }
 
+   let allColor = [];
+   let allTextColor = [];
+
+   //creating circle for selecting page color
    const CircleCreate = (colorName) =>{
        return (
            <ColorCircle 
@@ -100,20 +134,46 @@ const SettingsScreen = props =>{
        )
    }
 
+   //creating circle for text color selection
+   const CircleForTextColor = (colorName) =>{
+       return (
+           <ColorCircle 
+             key = {TextColor[colorName]}
+             style={{
+                 backgroundColor: TextColor[colorName],
+                 borderWidth: currentState.textColor[ TextColor[colorName] ]
+             }}
+             type = {colorName}
+             onColorPress = {onTextColorSelect}
+           />
+       )
+   }
+
    for (key in PageColor){
        allColor.push(CircleCreate(key));
+   }
+   for (key in TextColor){
+       allTextColor.push(CircleForTextColor(key))
    }
 
    const saveColor = () =>{
        let selectedPageColor=null;
+       let selectedTextColor = null;
        for (key in currentState.pageColor){
            if(currentState.pageColor[key] === 4){
                selectedPageColor = key;
                break;
            }
        }
+       for (key in currentState.textColor){
+           if(currentState.textColor[key] === 4){
+               selectedTextColor = key;
+               break;
+           }
+       }
       const allPageSettings = {
-          pageColor: selectedPageColor
+          pageColor: selectedPageColor !== null ? selectedPageColor : '#82CAFF',
+          textColor: selectedTextColor !== null ? selectedTextColor : 'black',
       }
       dispatch(SettingsAction(allPageSettings));
       props.navigation.navigate('Add');
@@ -130,6 +190,15 @@ const SettingsScreen = props =>{
            {allColor}
            
         </View>
+
+        <View  style={styles.pageTitleStyle}>
+            <Text style={styles.titleTextStyle}>Select Text Color</Text>
+        </View>
+
+        <View style={styles.textColorStyle} >
+            {allTextColor}
+        </View>
+
     </View>
 )
 
@@ -139,13 +208,13 @@ const styles = StyleSheet.create({
    container:{
        flex: 1,
        flexDirection: 'column',
-       backgroundColor: 'white'
+       backgroundColor: '#ccc'
     },
     pageColorStyle:{
         //flex: 1,
         flexDirection: 'row',
         margin: 10,
-        borderColor: PageColor.daySkyBlue,
+        borderColor: 'black',
         borderWidth: 1,
         flexWrap: 'wrap',
     },
@@ -155,6 +224,13 @@ const styles = StyleSheet.create({
     titleTextStyle:{
         fontWeight: 'bold',
         fontSize: 15,
+    },
+    textColorStyle:{
+        flexDirection: 'row',
+        margin: 10,
+        borderColor: 'black',
+        borderWidth: 1,
+        flexWrap: 'wrap'
     }
 
 })
