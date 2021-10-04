@@ -10,9 +10,9 @@ const initialState = {
     tasks: [],
     isStillFetching: true,
     settings:{
-        selectedPageColor: null,
+        selectedPageColor: '#82CAFF',
         selectedEditPageColor: null,
-        selectedTextColor: null,
+        selectedTextColor: 'black',
         editTextColor: null,
     }
 }
@@ -25,7 +25,7 @@ export default (state=initialState,action)=>{
             return {
                 ...state,
                 tasks: [...state.tasks,action.tasks],
-                settings: {...state.settings,selectedPageColor:  null}
+                settings: {...state.settings,selectedPageColor:  '#82CAFF',selectedTextColor: 'black'}
             }
 
         case FetchData:
@@ -37,7 +37,7 @@ export default (state=initialState,action)=>{
         case EDIT:
             let filteredList = state.tasks.filter( (task)=> task.id !== action.editData.id );
             filteredList.push(action.editData);
-            return {...state,tasks: filteredList}
+            return {...state,tasks: filteredList,settings: {...state.settings,editTextColor: null}}
         case SET_PAGE_COLOR:
             return {...state,settings: {...state.settings,
                 selectedPageColor: action.allSettings.pageColor,
