@@ -41,13 +41,19 @@ const formReducer = (state,action) =>{
     }
 }
 
+
+
 const EditSettingsScreen = props =>{
-    let savedPageColor = props.route.params.pageColorCode;
-    let savedTextColor = props.route.params.textColorCode;
-
-    console.log('savePageColor',savedPageColor);
-
     const dispatch = useDispatch();
+
+    let pageColorFromStore = useSelector((state) => state.allTask.settings.selectedEditPageColor)
+    let textColorFromStore = useSelector((state) => state.allTask.settings.editTextColor)
+    console.log('textColorfromstore',textColorFromStore);
+
+    let savedPageColor = pageColorFromStore;
+    let savedTextColor = textColorFromStore;
+
+    //console.log('savePageColor',savedPageColor);
 
     useLayoutEffect(()=>{
         props.navigation.setOptions({
@@ -86,7 +92,7 @@ const EditSettingsScreen = props =>{
    }
 
    const [currentState,DISPATCH] = useReducer(formReducer,initialState)
-   console.log('saved value from currentState',currentState.pageColor[savedTextColor])
+   //console.log('saved value from currentState',currentState.pageColor[savedTextColor])
 
    const onCircleSelect = (actionType) =>{
        let newSelectedColor = {};
@@ -171,8 +177,8 @@ const EditSettingsScreen = props =>{
         }
     }
 
-    console.log('selectedPageColor',selectedPageColor);
-    console.log('selectedTextColor',selectedTextColor);
+    //console.log('selectedPageColor',selectedPageColor);
+    //console.log('selectedTextColor',selectedTextColor);
 
 
    const allPageSettings = {
@@ -180,7 +186,12 @@ const EditSettingsScreen = props =>{
        textColor: selectedTextColor !== null ? selectedTextColor : 'black',
    }
    dispatch(EditSettingsAction(allPageSettings));
-      props.navigation.navigate({name: 'Add',params:{editMode:true}});
+      props.navigation.navigate({
+          name: 'Add',
+          params:{
+              editMode:true
+        }
+        });
    }
 
    return (
@@ -207,6 +218,7 @@ const EditSettingsScreen = props =>{
 )
 
 }
+
 
 const styles = StyleSheet.create({
    container:{

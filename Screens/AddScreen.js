@@ -1,5 +1,5 @@
 import React,{useLayoutEffect,useState,useReducer,useEffect} from 'react';
-import {View,StyleSheet,FlatList} from 'react-native';
+import {View,StyleSheet} from 'react-native';
 import InputItem from '../Component/UI/InputItem';
 import {useSelector,useDispatch} from 'react-redux';
 import { AddAction } from '../Store/Action/AddAction';
@@ -8,6 +8,7 @@ import {EditAction} from '../Store/Action/EditAction';
 import {HeaderButtons,Item} from 'react-navigation-header-buttons';
 import { CustomHeaderButton } from '../Component/UI/CustomHeaderButton';
 import TextItem from '../Component/UI/TextItem';
+import {EditSettingsAction} from '../Store/Action/SettingsAction';
 
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
@@ -64,13 +65,13 @@ const AddScreen = props => {
     const textColorToShow = CurrentPageSettings.selectedTextColor;
     const editTextColorToShow = currentState.addMode ? null : CurrentPageSettings.editTextColor!==null ? CurrentPageSettings.editTextColor : EditedPageSettings.textColor;
 
-    console.log('edited page settings', EditedPageSettings);
+    //console.log('edited page settings', EditedPageSettings);
 
     //console.log('saved page settings', SavedPageSettings);
 
-    console.log('edit page color',editPageColor);
+    //console.log('edit page color',editPageColor);
 
-    console.log('edit text color',editTextColorToShow);
+    //console.log('edit text color',editTextColorToShow);
 
     let selectedTask={};
     //find title and description
@@ -105,7 +106,7 @@ const AddScreen = props => {
 
     const submitHandler = () =>{
         let finalPageColor = addPageColor;
-        console.log('page color in submit handler',finalPageColor);
+        //console.log('page color in submit handler',finalPageColor);
         dispatch(AddAction({
             title:currentState.title,
             description:currentState.description,
@@ -127,6 +128,11 @@ const AddScreen = props => {
                 description: selectedTask.description,
             }
         })
+        const colorObj = {
+            pageColor: selectedTask.pageColor,
+            textColor: selectedTask.textColor
+        }
+        dispatch(EditSettingsAction(colorObj));
     }
 
     const editButtonHandler = () =>{
@@ -146,6 +152,7 @@ const AddScreen = props => {
     }
 
     const editSettingsHandler = () =>{
+
         props.navigation.navigate({name:'editSettings',
             params: {
                 pageColorCode:selectedTask.pageColor,

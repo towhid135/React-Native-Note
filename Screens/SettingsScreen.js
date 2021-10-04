@@ -10,6 +10,7 @@ import EditAbleCustomButton from "../Component/UI/CustomHeaderButton";
 import {useSelector,useDispatch} from 'react-redux'
 import { SettingsAction} from "../Store/Action/SettingsAction";
 import TextColor from "../Constants/TextColor";
+import Dropdown from "../Component/UI/Dropdown";
 //action type
 for (key in PageColor){
     var key = String(key);
@@ -41,6 +42,7 @@ const formReducer = (state,action) =>{
 }
 
 const SettingsScreen = props =>{
+    
     const savedPageColor = useSelector((state) => state.allTask.settings.selectedPageColor);
     const savedTextColor = useSelector((state) => state.allTask.settings.selectedTextColor);
     const selectedPageSettings = useSelector((state) => state.allTask.settings);
@@ -83,7 +85,7 @@ const SettingsScreen = props =>{
     textColor: {
         [TextColor.black]: TextColor.black===savedTextColor ? 4 : 0,
         [TextColor.white]: TextColor.white===savedTextColor ? 4 : 0
-    }
+    },
    }
 
    const [currentState,DISPATCH] = useReducer(formReducer,initialState)
@@ -198,6 +200,14 @@ const SettingsScreen = props =>{
         <View style={styles.textColorStyle} >
             {allTextColor}
         </View>
+        <View  style={styles.pageTitleStyle}>
+            <Text style={styles.titleTextStyle}>Select Font</Text>
+        </View>
+        <View style={styles.dropDown} >
+            <Dropdown 
+            />
+        </View>
+        
 
     </View>
 )
@@ -231,6 +241,9 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 1,
         flexWrap: 'wrap'
+    },
+    dropDown:{
+        margin: 10,
     }
 
 })
