@@ -10,6 +10,7 @@ import EditAbleCustomButton from "../Component/UI/CustomHeaderButton";
 import {useSelector,useDispatch} from 'react-redux'
 import {EditSettingsAction} from "../Store/Action/SettingsAction";
 import TextColor from "../Constants/TextColor";
+import Dropdown from "../Component/UI/Dropdown";
 
 //action type
 for (key in PageColor){
@@ -22,6 +23,7 @@ for (key in TextColor){
 
 const UPDATE = 'UPDATE';
 const UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR';
+const ADD_FONT = 'ADD_FONT';
 
 const formReducer = (state,action) =>{
     switch(action.type){
@@ -36,6 +38,8 @@ const formReducer = (state,action) =>{
                 textColor: action.selectedTextColor
     
             }
+        case ADD_FONT:
+            return {...state,textFont:{...state.textFont,selectedFontName: action.selectedFont}}
         default:
             return state;
     }
@@ -46,9 +50,11 @@ const formReducer = (state,action) =>{
 const EditSettingsScreen = props =>{
     const dispatch = useDispatch();
 
-    let pageColorFromStore = useSelector((state) => state.allTask.settings.selectedEditPageColor)
-    let textColorFromStore = useSelector((state) => state.allTask.settings.editTextColor)
-    console.log('textColorfromstore',textColorFromStore);
+    let pageColorFromStore = useSelector((state) => state.allTask.settings.selectedEditPageColor);
+    let textColorFromStore = useSelector((state) => state.allTask.settings.editTextColor);
+    const initialOrSavedFontValue = useSelector((state) => state.allTask.settings.editFontItem);
+    
+    console.log('initialOrSavedFontValue', initialOrSavedFontValue);
 
     let savedPageColor = pageColorFromStore;
     let savedTextColor = textColorFromStore;
@@ -88,7 +94,11 @@ const EditSettingsScreen = props =>{
       textColor: {
         [TextColor.black]: TextColor.black===savedTextColor ? 4 : 0,
         [TextColor.white]: TextColor.white===savedTextColor ? 4 : 0
+    },
+    textFont:{
+        selectedFontName: null,
     }
+
    }
 
    const [currentState,DISPATCH] = useReducer(formReducer,initialState)
@@ -121,6 +131,13 @@ const EditSettingsScreen = props =>{
         selectedTextColor: newSelectedTextColor
      });
    }
+
+   const onFontSelect = (fontName) =>{
+    DISPATCH({
+        type: ADD_FONT,
+        selectedFont: fontName
+    })
+}
 
    let allColor = [];
    let allTextColor = [];
@@ -184,6 +201,7 @@ const EditSettingsScreen = props =>{
    const allPageSettings = {
        pageColor: selectedPageColor !== null ? selectedPageColor : '#82CAFF',
        textColor: selectedTextColor !== null ? selectedTextColor : 'black',
+       textFont: currentState.textFont.selectedFontName
    }
    dispatch(EditSettingsAction(allPageSettings));
       props.navigation.navigate({
@@ -212,6 +230,12 @@ const EditSettingsScreen = props =>{
 
         <View style={styles.textColorStyle} >
             {allTextColor}
+        </View>
+        <View style={styles.dropDown} >
+            <Dropdown 
+              onFontSelect = {onFontSelect}
+              initialOrSavedFont = {initialOrSavedFontValue}
+            />
         </View>
 
     </View>
@@ -246,7 +270,11 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: 1,
         flexWrap: 'wrap'
+    },
+    dropDown:{
+        margin: 10,
     }
+
 
 })
 

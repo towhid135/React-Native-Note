@@ -5,14 +5,14 @@ const TextItem = props =>{
     const screenHeight = Dimensions.get('window').height;
     return (
         <View style={{...styles.container,...props.container}} >
-            
+            <ScrollView style={{height:"100%"}} >
             <Text
              selectable={true}
              style = {{...styles.titleStyle,...props.titleStyle}}
             >
             {props.title}
             </Text>
-            <ScrollView style={{height:"90%"}} >
+    
             <Text 
             selectable={true}
             style = {{...styles.desStyle,...props.desStyle}}
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
      marginBottom: 25,
     },
     desStyle:{
-        height: '90%',
+        height: '100%',
     }
 })
 

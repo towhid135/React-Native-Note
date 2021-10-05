@@ -1,11 +1,11 @@
 import React from 'react';
-import {View,TextInput,StyleSheet, Text} from 'react-native';
+import {View,TextInput,StyleSheet,ScrollView,KeyboardAvoidingView} from 'react-native';
 
 const InputItem = props =>{
 
     return (
         <View style={styles.container} >
-            
+            <ScrollView style={{height: "100%"}}>
             <TextInput
              style = {{...styles.titleStyle,...props.titleStyle}}
              placeholder='Enter Title'
@@ -15,7 +15,7 @@ const InputItem = props =>{
              editable={props.editPermission}
             />
             
-
+            
             
             <TextInput 
              style={{...styles.desStyle,...props.desStyle}}
@@ -26,6 +26,8 @@ const InputItem = props =>{
              onChangeText={props.desChange}
              editable={props.editPermission}
             />
+            </ScrollView>
+           
            
         </View>
     );
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
     },
     desStyle:{
       
-        height: '90%',
+        height: '100%',
     }
 })
 

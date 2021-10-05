@@ -22,6 +22,7 @@ for (key in TextColor){
 
 const UPDATE = 'UPDATE';
 const UPDATE_TEXT_COLOR = 'UPDATE_TEXT_COLOR';
+const ADD_FONT = 'ADD_FONT';
 
 const formReducer = (state,action) =>{
     switch(action.type){
@@ -36,6 +37,8 @@ const formReducer = (state,action) =>{
                 textColor: action.selectedTextColor
 
             }
+        case ADD_FONT:
+            return {...state,textFont:{...state.textFont,selectedFontName: action.selectedFont}}
         default:
             return state;
     }
@@ -46,8 +49,10 @@ const SettingsScreen = props =>{
     const savedPageColor = useSelector((state) => state.allTask.settings.selectedPageColor);
     const savedTextColor = useSelector((state) => state.allTask.settings.selectedTextColor);
     const selectedPageSettings = useSelector((state) => state.allTask.settings);
-    console.log('selectedPageSettings', selectedPageSettings);
-    console.log('saved text color from store',savedTextColor);
+    const initialOrSavedFontValue = useSelector((state) => state.allTask.settings.selectedFontItem);
+    //console.log('selectedPageSettings', selectedPageSettings);
+    //console.log('saved text color from store',savedTextColor);
+    console.log('initialOrSavedFontValue inside settings Screen', initialOrSavedFontValue);
 
     const dispatch = useDispatch();
 
@@ -86,6 +91,9 @@ const SettingsScreen = props =>{
         [TextColor.black]: TextColor.black===savedTextColor ? 4 : 0,
         [TextColor.white]: TextColor.white===savedTextColor ? 4 : 0
     },
+    textFont:{
+        selectedFontName: null,
+    }
    }
 
    const [currentState,DISPATCH] = useReducer(formReducer,initialState)
@@ -116,6 +124,13 @@ const SettingsScreen = props =>{
         type: UPDATE_TEXT_COLOR,
         selectedTextColor: newSelectedTextColor
      });
+   }
+
+   const onFontSelect = (fontName) =>{
+       DISPATCH({
+           type: ADD_FONT,
+           selectedFont: fontName
+       })
    }
 
    let allColor = [];
@@ -173,9 +188,11 @@ const SettingsScreen = props =>{
                break;
            }
        }
+       console.log('inside settingsScreen save color', currentState.textFont.selectedFontName);
       const allPageSettings = {
           pageColor: selectedPageColor !== null ? selectedPageColor : '#82CAFF',
           textColor: selectedTextColor !== null ? selectedTextColor : 'black',
+          textFont: currentState.textFont.selectedFontName
       }
       dispatch(SettingsAction(allPageSettings));
       props.navigation.navigate('Add');
@@ -205,6 +222,8 @@ const SettingsScreen = props =>{
         </View>
         <View style={styles.dropDown} >
             <Dropdown 
+              onFontSelect = {onFontSelect}
+              initialOrSavedFont = {initialOrSavedFontValue}
             />
         </View>
         

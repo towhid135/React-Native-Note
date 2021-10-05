@@ -12,7 +12,8 @@ export const EditAction = (EditDataObj) =>{
                 'title':EditDataObj.title,
                  'description': EditDataObj.description,
                  'pageColor': EditDataObj.pageColor,
-                 'textColor': EditDataObj.textColor
+                 'textColor': EditDataObj.textColor,
+                 'textFont': EditDataObj.textFont
             }
             )
         dispatch({type:EDIT,editData: EditDataObj})

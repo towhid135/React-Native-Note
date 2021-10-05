@@ -21,6 +21,7 @@ export const FetchAction = () =>{
                 title: fetchedData[key].title,
                 pageColor: fetchedData[key].pageColor,
                 textColor: fetchedData[key].textColor,
+                textFont: fetchedData[key].textFont,
             }
             allTasks.push(Newdata);
         }

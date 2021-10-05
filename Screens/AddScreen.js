@@ -1,5 +1,5 @@
 import React,{useLayoutEffect,useState,useReducer,useEffect} from 'react';
-import {View,StyleSheet} from 'react-native';
+import {View,StyleSheet,Text,TextInput} from 'react-native';
 import InputItem from '../Component/UI/InputItem';
 import {useSelector,useDispatch} from 'react-redux';
 import { AddAction } from '../Store/Action/AddAction';
@@ -43,18 +43,20 @@ const AddScreen = props => {
     const initialState = {
         title: '',
         description: '',
-        addMode: props.route.params.addMode ? true : false,
+        addMode: props.route.params.addMode  ? true : false,
         viewMode: props.route.params.addMode ? false :  props.route.params.viewMode,
         editMode: props.route.params.addMode ? false : props.route.params.editMode,
         taskId: props.route.params.addMode ? null : props.route.params.taskId,
         //pageColor: props.route.params.pageColor,
     }
+
     //console.log('addmode',initialState.addMode,'viewmode',initialState.viewMode,'editmode',initialState.editMode);
     const [currentState,DISPATCH] = useReducer(formReducer,initialState);
     //console.log('current state page color',props.route.params.pageColor);
 
     const selectedTaskId = currentState.taskId;
     let selectedButton=null;
+    console.log('currentId',currentState.taskId);
 
     const CurrentPageSettings = useSelector((state) => state.allTask.settings);
     const SavedPageSettings = useSelector((state) => state.allTask.tasks);
@@ -64,7 +66,14 @@ const AddScreen = props => {
     const editPageColor = currentState.addMode ? null : CurrentPageSettings.selectedEditPageColor!==null ? CurrentPageSettings.selectedEditPageColor : EditedPageSettings.pageColor;
     const textColorToShow = CurrentPageSettings.selectedTextColor;
     const editTextColorToShow = currentState.addMode ? null : CurrentPageSettings.editTextColor!==null ? CurrentPageSettings.editTextColor : EditedPageSettings.textColor;
+    const addPageFont = CurrentPageSettings.selectedFontItem;
+    const editPageFont = CurrentPageSettings.editFontItem;
 
+    
+    console.log('edit page font', editPageFont);
+
+    console.log('addPageFont',addPageFont);
+    console.log('current add mode',currentState.addMode);
     //console.log('edited page settings', EditedPageSettings);
 
     //console.log('saved page settings', SavedPageSettings);
@@ -80,6 +89,7 @@ const AddScreen = props => {
         selectedTask = allTasks.find((task) => task.id === selectedTaskId)
         //console.log('selectedTask',selectedTask);
     }
+    //console.log('selected task', selectedTask);
 
     //for saving color
     /*useEffect(()=>{
@@ -111,7 +121,8 @@ const AddScreen = props => {
             title:currentState.title,
             description:currentState.description,
             pageColor: finalPageColor,
-            textColor: textColorToShow
+            textColor: textColorToShow,
+            textFont: addPageFont,
         }))
         props.navigation.goBack();
     }
@@ -128,11 +139,6 @@ const AddScreen = props => {
                 description: selectedTask.description,
             }
         })
-        const colorObj = {
-            pageColor: selectedTask.pageColor,
-            textColor: selectedTask.textColor
-        }
-        dispatch(EditSettingsAction(colorObj));
     }
 
     const editButtonHandler = () =>{
@@ -142,6 +148,7 @@ const AddScreen = props => {
             description: currentState.description,
             pageColor: editPageColor,
             textColor: editTextColorToShow,
+            textFont: editPageFont
         };
         dispatch(EditAction(editedData));
         props.navigation.goBack();
@@ -156,7 +163,8 @@ const AddScreen = props => {
         props.navigation.navigate({name:'editSettings',
             params: {
                 pageColorCode:selectedTask.pageColor,
-                textColorCode: selectedTask.textColor
+                textColorCode: selectedTask.textColor,
+                textFont: selectedTask.textFont,
             }
         })
     }
@@ -240,7 +248,7 @@ const AddScreen = props => {
     
     //console.log('from AddScreen', currentState.editMode);
 
-    const inputItems = (
+    var inputItems = (
         <InputItem 
         title={(currentState.viewMode) ? selectedTask.title : currentState.title } 
         description={(currentState.viewMode) ? selectedTask.description : currentState.description } 
@@ -248,31 +256,30 @@ const AddScreen = props => {
         desChange={(currentState.addMode || currentState.editMode) ? descriptionChangeHandler : null} 
         editPermission = {(currentState.addMode || currentState.editMode) ? true : false}
         titleStyle={
-            (currentState.editMode) ? {...styles.titleStyle,color: editTextColorToShow} : {...styles.titleStyle,color:textColorToShow}
+            (currentState.editMode) ? {...styles.titleStyle,color: editTextColorToShow,fontFamily:editPageFont} : {...styles.titleStyle,color:textColorToShow, fontFamily: addPageFont}
         }
-        desStyle = {currentState.addMode ? {color: textColorToShow} : {color:editTextColorToShow} }
+        desStyle = {currentState.addMode ? {color: textColorToShow,fontFamily: addPageFont} : {color:editTextColorToShow,fontFamily: editPageFont} }
         />
     )
-   const TextItemsView = (
+   var TextItemsView = (
        <TextItem 
          title={selectedTask.title}
          description={selectedTask.description}
          taskID = {selectedTaskId}
-         titleStyle = {{color: editTextColorToShow}}
-         desStyle = {{color: editTextColorToShow}}
+         titleStyle = {{color: editTextColorToShow,fontFamily:editPageFont}}
+         desStyle = {{color: editTextColorToShow,fontFamily:editPageFont}}
        />
    )
 
     return (
         <View style={{backgroundColor: currentState.addMode ? addPageColor : (props.route.params.editMode ? editPageColor : selectedTask.pageColor) }}>
-            {currentState.viewMode ? TextItemsView : inputItems}
+           {currentState.viewMode ? TextItemsView : inputItems}
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     titleStyle: {
-        fontWeight: 'bold',
         fontSize: 25,
     },
 })

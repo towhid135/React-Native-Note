@@ -2,17 +2,23 @@ import React,{useState} from "react";
 import {View,Text,StyleSheet,TouchableHighlight,ScrollView} from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import FontNames from "../../Constants/FontNames";
+import {useSelector} from 'react-redux'
 
 
-const Dropdown = props =>{
+const Dropdown = props => {
+
     const [visible,setVisible] = useState(false);
-    const [selectedItem,setSelectedItem] = useState(null);
+    const initialOrSavedFont = props.initialOrSavedFont;
+    console.log('initalOrSavedFont inside dropdown', initialOrSavedFont);
+    const [selectedItem,setSelectedItem] = useState(initialOrSavedFont);
     let allFont = [];
     const selectedItemAction = (itemName) =>{
         setVisible(false);
         setSelectedItem(itemName);
+        props.onFontSelect(itemName);
 
     }
+
     const renderItem = (itemName) =>{
         return (
         <TouchableHighlight

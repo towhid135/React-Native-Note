@@ -16,7 +16,8 @@ import ViewItem from '../Component/UI/ViewItem';
 import {useSelector,useDispatch} from 'react-redux';
 import { FetchAction } from '../Store/Action/FetchDataAction';
 import AddButton from '../Component/UI/AddButton';
-import {Wave} from 'react-native-animated-spinkit'
+import {Wave} from 'react-native-animated-spinkit';
+import { EditSettingsAction } from '../Store/Action/SettingsAction';
 
 
 const HomeScreen = props => {
@@ -30,12 +31,23 @@ const HomeScreen = props => {
         /*if(Platform.OS === 'android' && Platform.Version >= 21){
             TouchComponent = TouchableNativeFeedback;
         }*/
+        const onTaskSelect = (selectedTask) =>{
+            console.log('homescreen ontaskselect', selectedTask.textFont);
+            const colorObj = {
+                pageColor: selectedTask.pageColor,
+                textColor: selectedTask.textColor,
+                textFont: selectedTask.textFont
+            }
+            dispatch(EditSettingsAction(colorObj));
+
+            props.navigation.navigate({name:'Add',params:{
+                taskId: selectedTask.id,
+                viewMode: true,
+               }})
+        }
         const task = (
         <TouchComponent
-             onPress={()=> props.navigation.navigate({name:'Add',params:{
-                 taskId: itemData.item.id,
-                 viewMode: true,
-                }})}
+             onPress={onTaskSelect.bind(this,itemData.item)}
              activeOpacity={0.9}
              >
         <ViewItem 
@@ -44,7 +56,7 @@ const HomeScreen = props => {
                 backgroundColor:itemData.item.pageColor,
                 borderColor: itemData.item.pageColor
             }} 
-            textStyle={styles.viewItemText}
+            textStyle={{color:itemData.item.textColor,fontFamily: itemData.item.textFont}}
         >
         {itemData.item.title}
         </ViewItem>
@@ -130,10 +142,6 @@ const styles = StyleSheet.create({
         shadowOffset: {width:0,height:0.5},
         shadowRadius: 5,
         elevation: 7,
-    },
-    viewItemText:{
-        fontWeight: 'bold',
-        color: 'white'
     },
     ActivityIndicatorView:{
         flex: 1,

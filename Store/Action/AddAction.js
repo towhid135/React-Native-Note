@@ -15,7 +15,8 @@ export const AddAction = (titleAndDes) =>{
             title: titleAndDes.title, 
             description: titleAndDes.description,
             pageColor: titleAndDes.pageColor!==null ? titleAndDes.pageColor : PageColor.compositeColor1,
-            textColor: titleAndDes.textColor!==null ? titleAndDes.textColor : 'black'
+            textColor: titleAndDes.textColor!==null ? titleAndDes.textColor : 'black',
+            textFont: titleAndDes.textFont,
         })
     })
     //getting responsed data
@@ -28,7 +29,8 @@ export const AddAction = (titleAndDes) =>{
                 title: titleAndDes.title, 
                 description: titleAndDes.description,
                 pageColor: titleAndDes.pageColor !== null ? titleAndDes.pageColor : PageColor.compositeColor1,
-                textColor: titleAndDes.textColor!==null ? titleAndDes.textColor : 'black'
+                textColor: titleAndDes.textColor!==null ? titleAndDes.textColor : 'black',
+                textFont: titleAndDes.textFont,
 
             }
         })
