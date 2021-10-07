@@ -3,5 +3,6 @@ export default {
     lightNaviBlue: "#556caa",
     compositeColor1: "#885da2",
     daySkyBlue:"#82CAFF",
+    darkSlate: "#2B3856",
 
 }

@@ -19,6 +19,10 @@ const fetchFont = () =>{
     'MontserratExtraLightItalic': require('./assets/Fonts/Montserrat/Montserrat-ExtraLightItalic.ttf'),
     'MontserratItalic': require('./assets/Fonts/Montserrat/Montserrat-Italic.ttf'),
     'MontserratLight': require('./assets/Fonts/Montserrat/Montserrat-Light.ttf'),
+
+    'বেনসেন': require('./assets/Fonts/BanglaFont/BenSenHandwriting.ttf'),
+    'চন্দ্রাবতী': require('./assets/Fonts/BanglaFont/ChandrabatiOMJ.ttf'),
+    'করতোয়া': require('./assets/Fonts/BanglaFont/Korotoa.ttf'),
     
      
   })

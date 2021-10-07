@@ -7,5 +7,8 @@ export default {
     MontserratExtraLight: 'MontserratExtraLight',
     MontserratExtraLightItalic: 'MontserratExtraLightItalic',
     MontserratItalic: 'MontserratItalic',
-    MontserratLight: 'MontserratLight'
+    MontserratLight: 'MontserratLight',
+    BenSenHandwriting:'বেনসেন',
+    ChandrabatiOMJ:'চন্দ্রাবতী',
+    Korotoa: 'করতোয়া'
 }

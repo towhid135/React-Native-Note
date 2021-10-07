@@ -90,10 +90,18 @@ const EditSettingsScreen = props =>{
         [PageColor.darkSlate] : PageColor.darkSlate===savedPageColor ? 4 : 0,
         [PageColor.blueEyes] : PageColor.blueEyes===savedPageColor ? 4 : 0,
         [PageColor.seaGreen] : PageColor.seaGreen===savedPageColor ? 4 : 0,
+        [PageColor.salmon]: PageColor.salmon===savedPageColor ? 4 : 0,
+        [PageColor.coral]: PageColor.coral===savedPageColor ? 4 : 0,
+        [PageColor.paleGreen]: PageColor.paleGreen===savedPageColor ? 4 : 0,
+        [PageColor.darkSeaGreen]: PageColor.darkSeaGreen===savedPageColor ? 4 : 0,
       },
       textColor: {
         [TextColor.black]: TextColor.black===savedTextColor ? 4 : 0,
-        [TextColor.white]: TextColor.white===savedTextColor ? 4 : 0
+        [TextColor.white]: TextColor.white===savedTextColor ? 4 : 0,
+        [TextColor.indianRed]: TextColor.indianRed===savedTextColor ? 4 : 0,
+        [TextColor.darkOrange]: TextColor.darkOrange===savedTextColor ? 4 : 0,
+        [TextColor.steelBlue]: TextColor.steelBlue===savedTextColor ? 4 : 0,
+        [TextColor.chocolate]: TextColor.chocolate===savedTextColor ? 4 : 0,
     },
     textFont:{
         selectedFontName: null,

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import {
     View,
     StyleSheet,
@@ -8,6 +8,8 @@ import {
     Platform,
     FlatList,
     ActivityIndicator,
+    LayoutAnimation,
+    UIManager
 } 
 from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
@@ -45,6 +47,19 @@ const HomeScreen = props => {
                 viewMode: true,
                }})
         }
+
+        //Delete animation function
+        const onCheckTask = () =>{
+            if (
+                Platform.OS === "android" &&
+                UIManager.setLayoutAnimationEnabledExperimental
+              ) {
+                UIManager.setLayoutAnimationEnabledExperimental(true);
+              }
+              
+            LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+        }
+
         const task = (
         <TouchComponent
              onPress={onTaskSelect.bind(this,itemData.item)}
@@ -54,9 +69,13 @@ const HomeScreen = props => {
             style={{
                 ...styles.ViewItemStyle,
                 backgroundColor:itemData.item.pageColor,
-                borderColor: itemData.item.pageColor
+                borderColor: itemData.item.pageColor,
+               height: 50,
+               width: "100%"
             }} 
             textStyle={{color:itemData.item.textColor,fontFamily: itemData.item.textFont}}
+            taskId={itemData.item.id}
+            deleteAnimation= {onCheckTask}
         >
         {itemData.item.title}
         </ViewItem>

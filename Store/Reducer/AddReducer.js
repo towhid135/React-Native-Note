@@ -4,6 +4,7 @@ import {ADD} from '../Action/AddAction';
 import {FetchData,stillFetching } from "../Action/FetchDataAction";
 import { EDIT } from "../Action/EditAction";
 import { SET_PAGE_COLOR,SET_EDIT_PAGE_COLOR } from "../Action/SettingsAction";
+import { DELETE } from "../Action/DeleteAction";
 
 
 const initialState = {
@@ -65,6 +66,12 @@ export default (state=initialState,action)=>{
                     editTextColor: action.allEditSettings.textColor,
                     editFontItem: action.allEditSettings.textFont,
                 }
+            }
+        case DELETE:
+            const updatedTasks = state.tasks.filter((task)  => action.taskId!=task.id);
+            return {
+                ...state,
+                tasks: updatedTasks,
             }
         default:
             return state;

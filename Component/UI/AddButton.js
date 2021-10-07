@@ -20,7 +20,7 @@ const AddButton = props => {
                     background={TouchableNativeFeedback.Ripple()}
                     >
                     <View style={styles.roundRipple}>
-                    <Ionicons name="md-add" size={80} color={Color.lightGreen} />
+                    <Ionicons name="md-add" size={80} color={Color.darkSlate} />
                     </View>
                     </TouchComponent>
         

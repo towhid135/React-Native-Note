@@ -266,13 +266,15 @@ const AddScreen = props => {
          title={selectedTask.title}
          description={selectedTask.description}
          taskID = {selectedTaskId}
-         titleStyle = {{color: editTextColorToShow,fontFamily:editPageFont}}
+         titleStyle = {{...styles.titleStyle,color: editTextColorToShow,fontFamily:editPageFont}}
          desStyle = {{color: editTextColorToShow,fontFamily:editPageFont}}
        />
    )
 
     return (
-        <View style={{backgroundColor: currentState.addMode ? addPageColor : (props.route.params.editMode ? editPageColor : selectedTask.pageColor) }}>
+        <View 
+        style={{backgroundColor: currentState.addMode ? addPageColor : (props.route.params.editMode ? editPageColor : selectedTask.pageColor) }}
+        >
            {currentState.viewMode ? TextItemsView : inputItems}
         </View>
     );

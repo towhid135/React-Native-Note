@@ -1,8 +1,15 @@
 import React from 'react';
-import {View,TextInput,StyleSheet,ScrollView,KeyboardAvoidingView} from 'react-native';
+import {
+    View,
+    TextInput,
+    StyleSheet,
+    ScrollView,
+    KeyboardAvoidingView,
+    Dimensions
+} from 'react-native';
 
 const InputItem = props =>{
-
+    const Height = Dimensions.get('window').height;
     return (
         <View style={styles.container} >
             <ScrollView style={{height: "100%"}}>
@@ -18,7 +25,11 @@ const InputItem = props =>{
             
             
             <TextInput 
-             style={{...styles.desStyle,...props.desStyle}}
+             style={{
+                 ...styles.desStyle,
+                 ...props.desStyle,
+                 height: Height * 0.8
+                }}
              placeholder='Enter Description'
              value = {props.description}
              multiline = {true}
@@ -40,10 +51,6 @@ const styles = StyleSheet.create({
     titleStyle:{
      marginBottom: 25,
     },
-    desStyle:{
-      
-        height: '100%',
-    }
 })
 
 export default InputItem;

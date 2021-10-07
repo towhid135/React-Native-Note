@@ -4,6 +4,7 @@ import HomeScreen from "../Screens/HomeScreen";
 import AddScreen from "../Screens/AddScreen";
 import SettingsScreen from "../Screens/SettingsScreen";
 import EditSettingsScreen from "../Screens/EditSettingsScreen";
+import FontTestScreen from "../Screens/FontTestScreen";
 
 const StackNav = props => {
     const Stack = createStackNavigator();
@@ -28,7 +29,6 @@ const StackNav = props => {
              component = {EditSettingsScreen}
              options = {{title: 'Task Settings'}}
             />
-            
         </Stack.Navigator>
     );
 }
