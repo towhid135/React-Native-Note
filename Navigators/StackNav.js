@@ -5,11 +5,17 @@ import AddScreen from "../Screens/AddScreen";
 import SettingsScreen from "../Screens/SettingsScreen";
 import EditSettingsScreen from "../Screens/EditSettingsScreen";
 import FontTestScreen from "../Screens/FontTestScreen";
+import LoginScreen from "../Screens/LoginScreen";
 
 const StackNav = props => {
     const Stack = createStackNavigator();
     return (
         <Stack.Navigator>
+            <Stack.Screen 
+             name = "Login"
+             component={LoginScreen}
+             options={{title:'Login'}}
+            />
             <Stack.Screen
               name="Home"
               component={HomeScreen}
