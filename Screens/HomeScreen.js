@@ -23,6 +23,7 @@ import { EditSettingsAction } from '../Store/Action/SettingsAction';
 
 
 const HomeScreen = props => {
+    console.log('userName',props.route);
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(FetchAction())

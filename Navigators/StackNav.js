@@ -6,6 +6,7 @@ import SettingsScreen from "../Screens/SettingsScreen";
 import EditSettingsScreen from "../Screens/EditSettingsScreen";
 import FontTestScreen from "../Screens/FontTestScreen";
 import LoginScreen from "../Screens/LoginScreen";
+import RegisterScreen from "../Screens/RegisterScreen";
 
 const StackNav = props => {
     const Stack = createStackNavigator();
@@ -15,6 +16,11 @@ const StackNav = props => {
              name = "Login"
              component={LoginScreen}
              options={{title:'Login'}}
+            />
+            <Stack.Screen
+             name='Register'
+             component={RegisterScreen}
+             options={{title:"Register"}}
             />
             <Stack.Screen
               name="Home"

@@ -2,14 +2,29 @@ import React,{useReducer, useState} from "react";
 import {View,TextInput,Text,StyleSheet,TouchableHighlight} from 'react-native';
 import Color from "../../Constants/Color";
 import { Ionicons } from "@expo/vector-icons";
+import CustomButton from "./CustomButton";
 
 
 const AuthComp = props =>{
+    const [text,setText] = useState({email:'',pass:''});
     const [borderColor,setBorderColor] = useState({email:'black',pass:'black'});
+
+    console.log('email',text.email,'pass',text.pass)
+
     const changeBorderColor = (fieldName) =>{
         if (fieldName==='email') setBorderColor({email:Color.lightGreen,pass: 'black'})
         else setBorderColor({email:'black', pass: Color.lightGreen})
     }
+    const textHandler = (fieldName,updatedText) =>{
+        if(fieldName === 'email'){
+            setText({email:updatedText,pass:text.pass})
+        }
+        else{
+            setText({email:text.email,pass:updatedText})
+        }
+    }
+
+
     return (
         <View style={styles.container}>
             <View style={styles.emailContainer}>
@@ -27,7 +42,7 @@ const AuthComp = props =>{
                       style = {{...styles.emailInput}}
                       placeholder="Please Enter your Email"
                       onFocus={changeBorderColor.bind(this,'email')}
-
+                      onChangeText = {textHandler.bind(this,'email')}
                     />
                 </View>
             </View>
@@ -47,8 +62,17 @@ const AuthComp = props =>{
                        secureTextEntry={true}
                        placeholder="Please Enter Your Password"
                        onFocus={changeBorderColor.bind(this,'pass')}
+                       onChangeText = {textHandler.bind(this,'pass')}
                     />
                 </View>
+            </View>
+
+            <View style={styles.buttonStyle} >
+                 <CustomButton
+                  buttonAction = {props.buttonAction.bind(this,text.email,text.pass)}
+                 >
+                     {props.buttonName}
+                </CustomButton>
             </View>
 
             <View style={styles.questionView}>
@@ -56,7 +80,7 @@ const AuthComp = props =>{
                  <TouchableHighlight
                   underlayColor={null}
                   activeOpacity={0.4}
-                  onPress={()=>{}}
+                  onPress={props.navigationPage}
                  >
                   <Text style={styles.questionText}>Dont have an account ?</Text>
                 </TouchableHighlight>
@@ -121,6 +145,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'MontserratBold'
     },
+    buttonStyle:{
+        marginTop: 20,
+        alignItems:'center'
+    }
 
 })
 

@@ -1,3 +1,57 @@
 import React from "react";
-import {View,TextInput,StyleSheet} from 'react-native';
-import app from '../fireBase/config'
+import {View,TextInput,StyleSheet,KeyboardAvoidingView} from 'react-native';
+import AuthComp from "../Component/UI/AuthComp";
+import app from "../fireBase/config";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+const RegisterScreen = props =>{
+
+    const getEmailPass = (email,pass) =>{
+      const auth = app.auth();
+      auth.createUserWithEmailAndPassword(email,pass)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        user.updateProfile({ // <-- Update Method here
+
+            displayName: "Towhid",
+
+          })
+        //console.log('user',user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+    
+     
+
+    }
+
+    return (
+            <AuthComp
+                loginMode = {false}
+                buttonName = 'Register'
+                buttonAction = {getEmailPass}
+            />    
+    )
+}
+
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        flexDirection: 'column',
+    },
+    authCompStyle:{
+        flex:1,
+    },
+    customButtonStyle:{
+        
+        alignItems: 'center',
+       
+    },
+})
+
+export default RegisterScreen;
