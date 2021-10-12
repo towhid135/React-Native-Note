@@ -4,5 +4,6 @@ export default {
     compositeColor1: "#885da2",
     daySkyBlue:"#82CAFF",
     darkSlate: "#2B3856",
+    red: '#FF0000'
 
 }

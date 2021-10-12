@@ -1,0 +1,6 @@
+import {StackActions} from '@react-navigation/native'
+
+/* here we can't use name: and params: props inside replace */
+props.navigation.dispatch(
+    StackActions.replace('Home',{userName:user.displayName})
+    )

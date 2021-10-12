@@ -1,22 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import {View,TextInput,StyleSheet,KeyboardAvoidingView} from 'react-native';
 import AuthComp from "../Component/UI/AuthComp";
 import app from "../fireBase/config";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {StackActions} from '@react-navigation/native';
 
 const RegisterScreen = props =>{
-
+    const [errorMessage,setErrorMessage] = useState('');
     const getEmailPass = (email,pass) =>{
+
       const auth = app.auth();
+      
       auth.createUserWithEmailAndPassword(email,pass)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
-        user.updateProfile({ // <-- Update Method here
+        user.updateProfile({ 
 
             displayName: "Towhid",
 
           })
+
+          props.navigation.dispatch(
+            StackActions.replace('Login')
+          )
         //console.log('user',user);
         // ...
       })
@@ -32,9 +38,11 @@ const RegisterScreen = props =>{
 
     return (
             <AuthComp
+                message={errorMessage}
                 loginMode = {false}
                 buttonName = 'Register'
                 buttonAction = {getEmailPass}
+                setError = {setErrorMessage}
             />    
     )
 }
