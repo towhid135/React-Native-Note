@@ -6,10 +6,12 @@ import {StackActions} from '@react-navigation/native';
 
 const RegisterScreen = props =>{
     const [errorMessage,setErrorMessage] = useState('');
+    const [isRegistering,setIsRegistering] = useState(false);
     const getEmailPass = (email,pass) =>{
 
       const auth = app.auth();
-      
+      setIsRegistering(true);
+      //console.log('isRegistering', isRegistering)
       auth.createUserWithEmailAndPassword(email,pass)
       .then((userCredential) => {
         // Signed in 
@@ -23,12 +25,16 @@ const RegisterScreen = props =>{
           props.navigation.dispatch(
             StackActions.replace('Login')
           )
+        setErrorMessage('');
+        setIsRegistering(false);
+
         //console.log('user',user);
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setIsRegistering(false);
         // ..
       });
     
@@ -38,7 +44,8 @@ const RegisterScreen = props =>{
 
     return (
             <AuthComp
-                message={errorMessage}
+                isRegistering={isRegistering}
+                message={isRegistering ? '' : errorMessage}
                 loginMode = {false}
                 buttonName = 'Register'
                 buttonAction = {getEmailPass}

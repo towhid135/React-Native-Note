@@ -23,10 +23,11 @@ import { EditSettingsAction } from '../Store/Action/SettingsAction';
 
 
 const HomeScreen = props => {
+    const userId = useSelector((state) => state.userInfo.userId);
     console.log('userName',props.route);
     const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(FetchAction())
+        dispatch(FetchAction(userId))
     },[dispatch])
 
     const viewListItem = itemData =>{

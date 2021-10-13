@@ -2,13 +2,17 @@ import React,{useState} from "react";
 import {StyleSheet} from 'react-native';
 import AuthComp from "../Component/UI/AuthComp";
 import app from "../fireBase/config";
-import {StackActions} from '@react-navigation/native'
+import {StackActions} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import { LoginAction } from "../Store/Action/AuthAction";
 
 const LoginScreen = props =>{
+   const dispatch = useDispatch();
 
     const [message,setMessage] = useState({message:'',isLogin:false});
+
     const sendEmailAndPass = (email,pass) =>{
-       console.log('inside sendEmailand pass')
+    
         const auth = app.auth();
         setMessage({message:'',isLogin:true})
         auth.signInWithEmailAndPassword(email,pass)
@@ -19,6 +23,11 @@ const LoginScreen = props =>{
 
             if(user) {
                 setMessage({message:'',isLogin:false})
+                //dispatching action
+                //console.log('userId',user.uid);
+                dispatch(LoginAction({
+                  Id: user.uid
+                }))
                 props.navigation.dispatch(
                   StackActions.replace('Home',{userName:user.displayName})
                 )

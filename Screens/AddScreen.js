@@ -68,6 +68,7 @@ const AddScreen = props => {
     const editTextColorToShow = currentState.addMode ? null : CurrentPageSettings.editTextColor!==null ? CurrentPageSettings.editTextColor : EditedPageSettings.textColor;
     const addPageFont = CurrentPageSettings.selectedFontItem;
     const editPageFont = CurrentPageSettings.editFontItem;
+    const userId = useSelector((state) => state.userInfo.userId);
 
     
     console.log('edit page font', editPageFont);
@@ -123,6 +124,7 @@ const AddScreen = props => {
             pageColor: finalPageColor,
             textColor: textColorToShow,
             textFont: addPageFont,
+            userId: userId,
         }))
         props.navigation.goBack();
     }
@@ -143,6 +145,7 @@ const AddScreen = props => {
 
     const editButtonHandler = () =>{
         const editedData = {
+            userId: userId,
             id: currentState.taskId,
             title: currentState.title,
             description: currentState.description,

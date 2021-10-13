@@ -80,14 +80,16 @@ const AuthComp = props =>{
     }
 
     const onButtonPress = (email,pass) =>{
+        
         if(!props.loginMode){
+            
             const isEmailValid = validateFields(email)
             if(! isEmailValid.email) {
             console.log('inside Authcomp')
-            props.setError('Please enter a valid email address.')
+            props.setError('Please enter a valid email address.');
         }
             else if( !(isEmailValid.email & isValid.len & isValid.number & isValid.upper & isValid.lower & isValid.special)){
-                props.setError('Please enter a valid Password.')
+                props.setError('Please enter a valid Password.');
             }
             else{
                 props.buttonAction(email,pass);

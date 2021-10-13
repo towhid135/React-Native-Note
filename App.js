@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import AuthReducer from './Store/Reducer/AuthReducer';
 
 const fetchFont = () =>{
   return Font.loadAsync({
@@ -30,6 +31,7 @@ const fetchFont = () =>{
 
 const rootReducer = combineReducers({
   allTask: AddReducer,
+  userInfo: AuthReducer
 })
 const store = createStore(rootReducer,applyMiddleware(ReduxThunk));
 

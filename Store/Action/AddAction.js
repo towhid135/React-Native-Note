@@ -1,12 +1,13 @@
 import React from "react";
 import PageColor from "../../Constants/PageColor";
+import {useSelector} from 'react-redux';
 export const ADD = "ADD";
 
-export const AddAction = (titleAndDes) =>{
 
+export const AddAction = (titleAndDes) =>{
     return async dispatch =>{
 
-        const response = await fetch('https://todo-d13e8-default-rtdb.firebaseio.com/todos.json',{
+        const response = await fetch('https://todo-d13e8-default-rtdb.firebaseio.com/'+titleAndDes.userId+'/todos.json',{
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'

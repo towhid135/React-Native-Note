@@ -1,18 +1,18 @@
 import React,{useState} from "react";
 import {View,Text,StyleSheet,CheckBox} from 'react-native';
 import app from "../../fireBase/config";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { DeleteAction } from "../../Store/Action/DeleteAction";
 
-const ViewItem = props =>{
-
+const ViewItem = props => {
+    const userId = useSelector((state) => state.userInfo.userId);
     const dispatch = useDispatch();
     const [isSelected,setSelection] = useState(false);
     const onSelect = () =>{
         setSelection(true);
         setTimeout(()=>{
             props.deleteAnimation();
-            app.database().ref('/todos/'+props.taskId).remove();
+            app.database().ref('/'+userId+'/todos/'+props.taskId).remove();
             dispatch(DeleteAction(props.taskId));
         },500);
         
