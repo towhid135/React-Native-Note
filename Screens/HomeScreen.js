@@ -9,7 +9,9 @@ import {
     FlatList,
     ActivityIndicator,
     LayoutAnimation,
-    UIManager
+    UIManager,
+    Image,
+    Dimensions
 } 
 from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
@@ -20,13 +22,23 @@ import { FetchAction } from '../Store/Action/FetchDataAction';
 import AddButton from '../Component/UI/AddButton';
 import {Wave} from 'react-native-animated-spinkit';
 import { EditSettingsAction } from '../Store/Action/SettingsAction';
+import FontNames from '../Constants/FontNames';
 
 
 const HomeScreen = props => {
-    const userId = useSelector((state) => state.userInfo.userId);
-    console.log('userName',props.route);
+    const userInfo = useSelector((state) => state.userInfo);
+    const userId = userInfo.userId;
+    const userName = userInfo.userName;
+
+    //console.log('userName',props.route);
     const dispatch = useDispatch();
     useEffect(()=>{
+        props.navigation.setOptions({
+            title: userName+"'s Note",
+            headerTitleStyle:{
+                fontFamily: FontNames.MontserratBoldItalic
+            }
+        })
         dispatch(FetchAction(userId))
     },[dispatch])
 
@@ -110,14 +122,29 @@ const HomeScreen = props => {
                {
                    (length === 0 && !isFetching ) && 
                    <View style={styles.warningView}>
+                       <View style={styles.imageView}> 
+                           <Image 
+                             source={require('../assets/Illustrations/addTask.png')}
+                             style={styles.imageStyle}
+                           />
+                       </View>
                        <View style={styles.warningTextView}>
 
-                       <Text style={styles.warningTextStyle}>No task available! please add some</Text>
+                       <Text style={styles.warningTextStyle}>Hey, 
+                        <Text style={{color:Color.red}}> {userName}! </Text> 
+                          please add some task.
+                        </Text>
                        </View>
 
                        <AddButton route = {() =>
                        props.navigation.navigate({name:'Add',params:{addMode:true}})
-                    } />
+                       } 
+                       container={{
+                           backgroundColor: "#fff",
+                           borderTopColor: '#ccc',
+                           borderTopWidth: 1,
+                        }}
+                       />
 
                     </View>
                }
@@ -127,11 +154,19 @@ const HomeScreen = props => {
                         data = {taskLists}
                         keyExtractor = {(item)=> item.id}
                         renderItem = {viewListItem}
+                       
                     />
                     </View>
                     <AddButton route = {() =>
                        props.navigation.navigate({name:'Add',params:{addMode:true}})
-                    } />
+                       
+                    }
+                    container={{
+                        backgroundColor: "#fff",
+                        borderTopColor: '#ccc',
+                        borderTopWidth: 1,
+                     }}
+                     />
                     
            </View>
            } 
@@ -172,15 +207,28 @@ const styles = StyleSheet.create({
     },
     warningView:{
         flex: 1,
+        
     },
     warningTextStyle:{
-        fontSize: 20,
-        color: 'red',
+        fontSize: 15,
+        color: Color.darkSlate,
+        fontFamily: FontNames.MontserratBoldItalic,
     },
     warningTextView:{
-        flex: 6,
-        justifyContent: 'center',
+        flex: 2,
         alignItems: 'center',
+        //backgroundColor: 'green'
+    },
+    imageView:{
+        flex: 4,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        //backgroundColor: 'red',
+    },
+    imageStyle:{
+        height: 150,
+        width: '80%'
     }
 })
 

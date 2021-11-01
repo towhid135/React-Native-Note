@@ -7,18 +7,20 @@ import {StackActions} from '@react-navigation/native';
 const RegisterScreen = props =>{
     const [errorMessage,setErrorMessage] = useState('');
     const [isRegistering,setIsRegistering] = useState(false);
-    const getEmailPass = (email,pass) =>{
+
+    const getEmailPass = (authObj) =>{
 
       const auth = app.auth();
       setIsRegistering(true);
-      //console.log('isRegistering', isRegistering)
-      auth.createUserWithEmailAndPassword(email,pass)
+      console.log('authObj.email', authObj.email);
+
+      auth.createUserWithEmailAndPassword(authObj.email,authObj.pass)
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
         user.updateProfile({ 
 
-            displayName: "Towhid",
+            displayName: authObj.userName,
 
           })
 

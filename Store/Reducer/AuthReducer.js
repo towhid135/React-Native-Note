@@ -2,6 +2,7 @@ import React from "react";
 import { LOGIN } from "../Action/AuthAction";
 
 const initialState = {
+    userName: null,
     userId: null
 }
 

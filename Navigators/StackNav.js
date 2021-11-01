@@ -7,26 +7,25 @@ import EditSettingsScreen from "../Screens/EditSettingsScreen";
 import FontTestScreen from "../Screens/FontTestScreen";
 import LoginScreen from "../Screens/LoginScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
+import MyDrawer from "./DrawerNavigator";
 
 const StackNav = props => {
     const Stack = createStackNavigator();
     return (
         <Stack.Navigator>
             <Stack.Screen 
-             name = "Login"
-             component={LoginScreen}
-             options={{title:'Login'}}
+             name = 'Login'
+             component = {LoginScreen}
             />
-            <Stack.Screen
-             name='Register'
+            <Stack.Screen 
+             name = 'Register'
              component={RegisterScreen}
-             options={{title:"Register"}}
             />
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{title:'Task Lists'}}
-             />
+            <Stack.Screen 
+             name = "Home"
+             component = {MyDrawer}
+             options = {{headerShown: false}}
+            />
              <Stack.Screen 
               name = "Add"
               component={AddScreen}

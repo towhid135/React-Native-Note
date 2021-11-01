@@ -1,0 +1,11 @@
+#Drawer navigator was not working correctly. Then I have found out that the prolem lies in the version of the
+DrawerNavigator. All of the navigators (Drawer,Tab,Stack) should same as the version of the "@react-navigation/native".
+
+#After downgrading the drawer navigation to version 5 I have got an error like "Unable to resolve module". After
+searching to the troubleshooting page of the react-native I have found that the problem is occuring because of
+internal caching. And the solution of the problem is to enter the command "expo start -c". For bare react-native
+there is other approach. 
+
+# If we set the DrawerNavigator's "headerShown = true" then we will get the " build in toggleButton (menu button)"
+automatically.
+

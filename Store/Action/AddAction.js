@@ -5,6 +5,7 @@ export const ADD = "ADD";
 
 
 export const AddAction = (titleAndDes) =>{
+    console.log('userId',titleAndDes.userId);
     return async dispatch =>{
 
         const response = await fetch('https://todo-d13e8-default-rtdb.firebaseio.com/'+titleAndDes.userId+'/todos.json',{

@@ -26,6 +26,7 @@ const LoginScreen = props =>{
                 //dispatching action
                 //console.log('userId',user.uid);
                 dispatch(LoginAction({
+                  Name: user.displayName,
                   Id: user.uid
                 }))
                 props.navigation.dispatch(
@@ -38,7 +39,7 @@ const LoginScreen = props =>{
             const errorCode = error.code;
             const errorMessage = error.message;
             setMessage({message:errorMessage,isLogin: false});
-            console.log('error message', errorMessage);
+            //console.log('error message', errorMessage);
           });
 
 
