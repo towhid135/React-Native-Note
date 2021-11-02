@@ -84,8 +84,8 @@ const HomeScreen = props => {
                 ...styles.ViewItemStyle,
                 backgroundColor:itemData.item.pageColor,
                 borderColor: itemData.item.pageColor,
-               height: 50,
-               width: "100%"
+                height: 50,
+                width: "100%"
             }} 
             textStyle={{color:itemData.item.textColor,fontFamily: itemData.item.textFont}}
             taskId={itemData.item.id}
@@ -143,6 +143,8 @@ const HomeScreen = props => {
                            backgroundColor: "#fff",
                            borderTopColor: '#ccc',
                            borderTopWidth: 1,
+                           borderBottomColor: '#ccc',
+                           borderBottomWidth: 1,
                         }}
                        />
 
@@ -165,6 +167,8 @@ const HomeScreen = props => {
                         backgroundColor: "#fff",
                         borderTopColor: '#ccc',
                         borderTopWidth: 1,
+                        borderBottomColor: '#ccc',
+                        borderBottomWidth: 1,
                      }}
                      />
                     
