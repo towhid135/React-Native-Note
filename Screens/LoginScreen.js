@@ -52,6 +52,7 @@ const LoginScreen = props =>{
          navigationPage={()=> props.navigation.navigate('Register')}
          buttonName = 'Login'
          buttonAction = {sendEmailAndPass}
+         forgotPage = {() => props.navigation.navigate('Forgot')}
         />
     );
 }

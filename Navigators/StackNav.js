@@ -1,13 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "../Screens/HomeScreen";
 import AddScreen from "../Screens/AddScreen";
 import SettingsScreen from "../Screens/SettingsScreen";
 import EditSettingsScreen from "../Screens/EditSettingsScreen";
-import FontTestScreen from "../Screens/FontTestScreen";
 import LoginScreen from "../Screens/LoginScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
 import MyDrawer from "./DrawerNavigator";
+import ForgotPassScreen from "../Screens/ForgotPassScreen";
 
 const StackNav = props => {
     const Stack = createStackNavigator();
@@ -20,6 +19,10 @@ const StackNav = props => {
             <Stack.Screen 
              name = 'Register'
              component={RegisterScreen}
+            />
+            <Stack.Screen
+             name = 'Forgot'
+             component = {ForgotPassScreen}
             />
             <Stack.Screen 
              name = "Home"

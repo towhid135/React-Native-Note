@@ -238,6 +238,18 @@ const AuthComp = props =>{
                 }
             </View>
 
+            <View style={styles.questionView}>
+                {props.loginMode && 
+                 <TouchableHighlight
+                  underlayColor={null}
+                  activeOpacity={0.4}
+                  onPress={props.forgotPage}
+                 >
+                  <Text style={styles.questionText}>Forgot Password ?</Text>
+                </TouchableHighlight>
+                }
+            </View>
+
             {(props.isLogin || props.isRegistering) && 
               <Modal
                transparent
