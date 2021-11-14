@@ -33,7 +33,7 @@ const Dropdown = props => {
         )
     }
 
-    const showedItemName = selectedItem !== null ? selectedItem : 'Select Item';
+    const showedItemName = selectedItem !== null ? selectedItem : 'Select Font';
 
     for (key in FontNames){
         allFont.push(renderItem(FontNames[key]));

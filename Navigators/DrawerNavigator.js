@@ -1,4 +1,5 @@
 import React from "react";
+import {View,Modal} from 'react-native';
 import {StackActions} from '@react-navigation/native';
 import {
     createDrawerNavigator,
@@ -8,13 +9,12 @@ import {
 } 
 from '@react-navigation/drawer';
 import app from "../fireBase/config";
-import StackNav from "./StackNav";
 import HomeScreen from "../Screens/HomeScreen";
+import {Wave} from 'react-native-animated-spinkit'
 
 const onLogoutPress = props =>{
     const auth = app.auth();
     auth.signOut().then(() => {
-        console.log('successful logout');
         props.dispatch(
             StackActions.replace('Login')
         )
@@ -24,6 +24,7 @@ const onLogoutPress = props =>{
     
 }
 
+// Here the navigation property comes when it is declared to the drawer content
 const LoginContent = props =>{
     //console.log('props of login content', props);
     return (

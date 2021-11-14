@@ -19,9 +19,9 @@ const LoginScreen = props =>{
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            //console.log(user);
+            //console.log(user.emailVerified);
 
-            if(user) {
+            if(user.emailVerified) {
                 setMessage({message:'',isLogin:false})
                 //dispatching action
                 //console.log('userId',user.uid);
@@ -32,6 +32,9 @@ const LoginScreen = props =>{
                 props.navigation.dispatch(
                   StackActions.replace('Home',{userName:user.displayName})
                 )
+            }
+            else{
+              setMessage({message:'Please verify your email.',isLogin:false})
             }
             // ...
           })

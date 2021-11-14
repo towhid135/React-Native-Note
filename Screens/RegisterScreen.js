@@ -12,11 +12,15 @@ const RegisterScreen = props =>{
 
       const auth = app.auth();
       setIsRegistering(true);
-      console.log('authObj.email', authObj.email);
+      //console.log('authObj.email', authObj.email);
 
       auth.createUserWithEmailAndPassword(authObj.email,authObj.pass)
       .then((userCredential) => {
-        // Signed in 
+        //signed in
+        // Verification mail
+        userCredential.user.sendEmailVerification();
+
+
         const user = userCredential.user;
         user.updateProfile({ 
 
