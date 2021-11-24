@@ -13,10 +13,6 @@ const StackNav = props => {
     const Stack = createStackNavigator();
     return (
         <Stack.Navigator initialRouteName="notification" >
-            <Stack.Screen
-             name = 'notification'
-             component = {FontTestScreen}
-            />
             <Stack.Screen 
              name = 'Login'
              component = {LoginScreen}
