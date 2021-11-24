@@ -1,0 +1,7 @@
+# time out warning
+import { StyleSheet, LogBox } from 'react-native';
+// hides only a specific ('Setting a timer') warning.
+LogBox.ignoreLogs(['Setting a timer']);
+
+//Ignore all log notifications
+LogBox.ignoreAllLogs()

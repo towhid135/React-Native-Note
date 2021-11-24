@@ -1,20 +1,16 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import {
     View,
     StyleSheet,
     Text,
-    TouchableNativeFeedback,
     TouchableOpacity,
     Platform,
     FlatList,
-    ActivityIndicator,
     LayoutAnimation,
     UIManager,
     Image,
-    Dimensions
 } 
 from 'react-native';
-import {Ionicons} from '@expo/vector-icons';
 import Color from '../Constants/Color';
 import ViewItem from '../Component/UI/ViewItem';
 import {useSelector,useDispatch} from 'react-redux';
@@ -30,7 +26,6 @@ const HomeScreen = props => {
     const userId = userInfo.userId;
     const userName = userInfo.userName;
 
-    //console.log('userName',props.route);
     const dispatch = useDispatch();
     useEffect(()=>{
         props.navigation.setOptions({
@@ -48,7 +43,6 @@ const HomeScreen = props => {
             TouchComponent = TouchableNativeFeedback;
         }*/
         const onTaskSelect = (selectedTask) =>{
-            console.log('homescreen ontaskselect', selectedTask.textFont);
             const colorObj = {
                 pageColor: selectedTask.pageColor,
                 textColor: selectedTask.textColor,
@@ -107,8 +101,6 @@ const HomeScreen = props => {
     const taskLists = useSelector((state) => state.allTask.tasks);
     const isFetching = useSelector((state) => state.allTask.isStillFetching)
     const length = taskLists.length;
-    //console.log('from home',taskLists);
-    //add button
 
 
     return (

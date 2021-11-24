@@ -50,9 +50,6 @@ const SettingsScreen = props =>{
     const savedTextColor = useSelector((state) => state.allTask.settings.selectedTextColor);
     const selectedPageSettings = useSelector((state) => state.allTask.settings);
     const initialOrSavedFontValue = useSelector((state) => state.allTask.settings.selectedFontItem);
-    //console.log('selectedPageSettings', selectedPageSettings);
-    //console.log('saved text color from store',savedTextColor);
-    console.log('initialOrSavedFontValue inside settings Screen', initialOrSavedFontValue);
 
     const dispatch = useDispatch();
 
@@ -114,7 +111,7 @@ const SettingsScreen = props =>{
            if(key === colorType) newSelectedColor[colorType] = 4;
            else newSelectedColor[key] = 0;
        }
-       //console.log('PageColor of actionType',colorType);
+      
        DISPATCH({
            type: UPDATE,
            selectedColor: newSelectedColor
@@ -128,7 +125,7 @@ const SettingsScreen = props =>{
         if(key === colorType) newSelectedTextColor[colorType] = 4;
         else newSelectedTextColor[key] = 0;
     }
-    //console.log('PageColor of actionType',colorType);
+
     DISPATCH({
         type: UPDATE_TEXT_COLOR,
         selectedTextColor: newSelectedTextColor
@@ -197,7 +194,7 @@ const SettingsScreen = props =>{
                break;
            }
        }
-       console.log('inside settingsScreen save color', currentState.textFont.selectedFontName);
+      
       const allPageSettings = {
           pageColor: selectedPageColor !== null ? selectedPageColor : '#82CAFF',
           textColor: selectedTextColor !== null ? selectedTextColor : 'black',

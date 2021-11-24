@@ -1,11 +1,14 @@
-import React from "react";
-import PageColor from "../../Constants/PageColor";
-export const ADD = "ADD";
+Redux thunk is a middleware, it sits between action and reducer. In redux when an action is dispatched we can only return an object which contains action type and data. But when we use redux-thunk, we can return an async function from the inside of the action creator funcion. Redux-thunk gets that function and sends a dispatch function as an argument of that function. By using that dispatch function we can dispatch anything. Before dispatching anything we can also perform any async tasks.
 
+Example: 
 
 export const AddAction = (titleAndDes) =>{
+    console.log('userId',titleAndDes.userId);
+
+    //returning function
     return async dispatch =>{
 
+        //Before dispatching, performing async tasks
         const response = await fetch('https://todo-d13e8-default-rtdb.firebaseio.com/'+titleAndDes.userId+'/todos.json',{
         method: 'POST',
         headers:{

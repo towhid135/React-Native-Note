@@ -1,5 +1,5 @@
-import React,{useLayoutEffect,useState,useReducer,useEffect} from 'react';
-import {View,StyleSheet,Text,TextInput} from 'react-native';
+import React,{useLayoutEffect,useReducer} from 'react';
+import {View,StyleSheet} from 'react-native';
 import InputItem from '../Component/UI/InputItem';
 import {useSelector,useDispatch} from 'react-redux';
 import { AddAction } from '../Store/Action/AddAction';
@@ -8,7 +8,6 @@ import {EditAction} from '../Store/Action/EditAction';
 import {HeaderButtons,Item} from 'react-navigation-header-buttons';
 import { CustomHeaderButton } from '../Component/UI/CustomHeaderButton';
 import TextItem from '../Component/UI/TextItem';
-import {EditSettingsAction} from '../Store/Action/SettingsAction';
 
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
@@ -39,7 +38,6 @@ const formReducer = (state,action) =>{
 
 const AddScreen = props => {
     const dispatch = useDispatch();
-    //console.log('addmode',props.route.params);
     const initialState = {
         title: '',
         description: '',
@@ -50,13 +48,9 @@ const AddScreen = props => {
         //pageColor: props.route.params.pageColor,
     }
 
-    //console.log('addmode',initialState.addMode,'viewmode',initialState.viewMode,'editmode',initialState.editMode);
     const [currentState,DISPATCH] = useReducer(formReducer,initialState);
-    //console.log('current state page color',props.route.params.pageColor);
-
     const selectedTaskId = currentState.taskId;
     let selectedButton=null;
-    console.log('currentId',currentState.taskId);
 
     const CurrentPageSettings = useSelector((state) => state.allTask.settings);
     const SavedPageSettings = useSelector((state) => state.allTask.tasks);
@@ -70,37 +64,12 @@ const AddScreen = props => {
     const editPageFont = CurrentPageSettings.editFontItem;
     const userId = useSelector((state) => state.userInfo.userId);
 
-    
-    console.log('edit page font', editPageFont);
-
-    console.log('addPageFont',addPageFont);
-    console.log('current add mode',currentState.addMode);
-    //console.log('edited page settings', EditedPageSettings);
-
-    //console.log('saved page settings', SavedPageSettings);
-
-    //console.log('edit page color',editPageColor);
-
-    //console.log('edit text color',editTextColorToShow);
-
     let selectedTask={};
     //find title and description
     if(currentState.editMode || currentState.viewMode){
         const allTasks = useSelector((select) => select.allTask.tasks ) 
         selectedTask = allTasks.find((task) => task.id === selectedTaskId)
-        //console.log('selectedTask',selectedTask);
     }
-    //console.log('selected task', selectedTask);
-
-    //for saving color
-    /*useEffect(()=>{
-        if(props.route.params.pageColor){
-            DISPATCH({
-                type: UPDATE_COLOR,
-                pageColor: props.route.params.pageColor,
-            })
-        }
-    })*/
 
     const titleChangeHandler = text =>{
         DISPATCH({
@@ -117,7 +86,6 @@ const AddScreen = props => {
 
     const submitHandler = () =>{
         let finalPageColor = addPageColor;
-        //console.log('page color in submit handler',finalPageColor);
         dispatch(AddAction({
             title:currentState.title,
             description:currentState.description,
@@ -248,8 +216,6 @@ const AddScreen = props => {
             })
         })
     }
-    
-    //console.log('from AddScreen', currentState.editMode);
 
     var inputItems = (
         <InputItem 

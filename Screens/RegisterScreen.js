@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {View,TextInput,StyleSheet,KeyboardAvoidingView} from 'react-native';
+import {StyleSheet} from 'react-native';
 import AuthComp from "../Component/UI/AuthComp";
 import app from "../fireBase/config";
 import {StackActions} from '@react-navigation/native';
@@ -12,7 +12,6 @@ const RegisterScreen = props =>{
 
       const auth = app.auth();
       setIsRegistering(true);
-      //console.log('authObj.email', authObj.email);
 
       auth.createUserWithEmailAndPassword(authObj.email,authObj.pass)
       .then((userCredential) => {
@@ -34,7 +33,6 @@ const RegisterScreen = props =>{
         setErrorMessage('');
         setIsRegistering(false);
 
-        //console.log('user',user);
         // ...
       })
       .catch((error) => {

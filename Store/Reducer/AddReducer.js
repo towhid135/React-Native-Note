@@ -1,5 +1,4 @@
-import React,{useEffect,useReducer} from "react";
-import app from "../../fireBase/config";
+import React from "react";
 import {ADD} from '../Action/AddAction';
 import {FetchData,stillFetching } from "../Action/FetchDataAction";
 import { EDIT } from "../Action/EditAction";
@@ -19,12 +18,9 @@ const initialState = {
         editFontItem: null,
     }
 }
-//console.log('initial state',initialState.tasks);
-
 export default (state=initialState,action)=>{
     switch(action.type){
         case ADD:
-            console.log('page color in action.tasks', action.tasks.pageColor);
             return {
                 ...state,
                 tasks: [...state.tasks,action.tasks],
@@ -43,7 +39,7 @@ export default (state=initialState,action)=>{
         case stillFetching:
             return {...state,isStillFetching: action.isFetching}
         case EDIT:
-            let filteredList = state.tasks.filter( (task)=> task.id !== action.editData.id );
+            let filteredList = state.tasks.filter( (task) => task.id !== action.editData.id );
             filteredList.push(action.editData);
             return {...state,tasks: filteredList,settings: {
                 ...state.settings,
@@ -51,14 +47,12 @@ export default (state=initialState,action)=>{
                 editFontItem: null
             }}
         case SET_PAGE_COLOR:
-            console.log('inside SET_PAGE_COLOR', action.allSettings.textFont);
             return {...state,settings: {...state.settings,
                 selectedPageColor: action.allSettings.pageColor,
                 selectedTextColor: action.allSettings.textColor,
                 selectedFontItem: action.allSettings.textFont,
             }}
         case SET_EDIT_PAGE_COLOR:
-            console.log('inside SET_EDIT_PAGE_COLOR', action.allEditSettings.textFont);
             return {
                     ...state, settings: {
                     ...state.settings,

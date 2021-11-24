@@ -19,12 +19,10 @@ const LoginScreen = props =>{
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            //console.log(user.emailVerified);
 
             if(user.emailVerified) {
                 setMessage({message:'',isLogin:false})
-                //dispatching action
-                //console.log('userId',user.uid);
+               
                 dispatch(LoginAction({
                   Name: user.displayName,
                   Id: user.uid
@@ -42,7 +40,7 @@ const LoginScreen = props =>{
             const errorCode = error.code;
             const errorMessage = error.message;
             setMessage({message:errorMessage,isLogin: false});
-            //console.log('error message', errorMessage);
+           
           });
 
 

@@ -1,5 +1,5 @@
-import React,{useReducer, useState} from "react";
-import {View,TextInput,Text,StyleSheet,TouchableHighlight,Modal,Alert} from 'react-native';
+import React,{useState} from "react";
+import {View,TextInput,Text,StyleSheet,TouchableHighlight,Modal} from 'react-native';
 import Color from "../../Constants/Color";
 import { Ionicons } from "@expo/vector-icons";
 import CustomButton from "./CustomButton";
@@ -42,8 +42,6 @@ const AuthComp = props =>{
 
     })
     const [borderColor,setBorderColor] = useState({userName: 'black',email:'black',pass:'black'});
-
-    //console.log('email',text.email,'pass',text.pass)
 
     const changeBorderColor = (fieldName) =>{
         if (fieldName==='email') setBorderColor({userName:'black',email:Color.lightGreen,pass: 'black'})
@@ -106,7 +104,6 @@ const AuthComp = props =>{
             const isEmailValid = validateFields(authObj.email)
             if(!authObj.userName) props.setError('Please enter a user name.');
             else if(! isEmailValid.email) {
-            //console.log('inside Authcomp')
             props.setError('Please enter a valid email address.');
             }
             else if( !(isEmailValid.email & isValid.len & isValid.number & isValid.upper & isValid.lower & isValid.special)){
@@ -117,7 +114,6 @@ const AuthComp = props =>{
             }
         
     }
-    //console.log('inside auth comp on button press')
     else {
         props.buttonAction(authObj.email,authObj.pass);
     }

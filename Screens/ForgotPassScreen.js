@@ -16,7 +16,6 @@ const ForgotPassScreen = props =>{
         const auth = app.auth();
         auth.sendPasswordResetEmail(values.initialText)
         .then(() => {
-          console.log('forgot mail sent');
           setValues({...values,isResetPressed:true})
         })
         .catch((error) => {

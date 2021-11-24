@@ -1,4 +1,3 @@
-import TextColor from "../../Constants/TextColor";
 export const FetchData = 'FetchData';
 export const stillFetching = 'stillFetching';
 
@@ -24,7 +23,6 @@ export const FetchAction = (userId) =>{
             }
             allTasks.push(Newdata);
         }
-
         dispatch({
             type: stillFetching,
             isFetching: false

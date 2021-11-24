@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, LogBox } from 'react-native';
 import MainNav from './Navigators/MainNav';
 import {createStore,combineReducers,applyMiddleware} from 'redux';
 import AddReducer from './Store/Reducer/AddReducer';
@@ -9,6 +8,9 @@ import ReduxThunk from 'redux-thunk';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import AuthReducer from './Store/Reducer/AuthReducer';
+
+//ignore warning
+LogBox.ignoreLogs(['Setting a timer']);
 
 const fetchFont = () =>{
   return Font.loadAsync({

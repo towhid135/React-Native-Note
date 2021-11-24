@@ -7,11 +7,16 @@ import LoginScreen from "../Screens/LoginScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
 import MyDrawer from "./DrawerNavigator";
 import ForgotPassScreen from "../Screens/ForgotPassScreen";
+import FontTestScreen from "../Screens/FontTestScreen"
 
 const StackNav = props => {
     const Stack = createStackNavigator();
     return (
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="notification" >
+            <Stack.Screen
+             name = 'notification'
+             component = {FontTestScreen}
+            />
             <Stack.Screen 
              name = 'Login'
              component = {LoginScreen}

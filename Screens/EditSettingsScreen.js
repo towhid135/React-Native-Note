@@ -1,4 +1,4 @@
-import React,{useEffect,useReducer,useLayoutEffect} from "react";
+import React,{useReducer,useLayoutEffect} from "react";
 import {
     View,
     Text,
@@ -53,13 +53,9 @@ const EditSettingsScreen = props =>{
     let pageColorFromStore = useSelector((state) => state.allTask.settings.selectedEditPageColor);
     let textColorFromStore = useSelector((state) => state.allTask.settings.editTextColor);
     const initialOrSavedFontValue = useSelector((state) => state.allTask.settings.editFontItem);
-    
-    console.log('initialOrSavedFontValue', initialOrSavedFontValue);
 
     let savedPageColor = pageColorFromStore;
     let savedTextColor = textColorFromStore;
-
-    //console.log('savePageColor',savedPageColor);
 
     useLayoutEffect(()=>{
         props.navigation.setOptions({
@@ -110,7 +106,6 @@ const EditSettingsScreen = props =>{
    }
 
    const [currentState,DISPATCH] = useReducer(formReducer,initialState)
-   //console.log('saved value from currentState',currentState.pageColor[savedTextColor])
 
    const onCircleSelect = (actionType) =>{
        let newSelectedColor = {};
@@ -119,7 +114,7 @@ const EditSettingsScreen = props =>{
            if(key === colorType) newSelectedColor[colorType] = 4;
            else newSelectedColor[key] = 0;
        }
-       //console.log('PageColor of actionType',colorType);
+
        DISPATCH({
            type: UPDATE,
            selectedColor: newSelectedColor
@@ -133,7 +128,7 @@ const EditSettingsScreen = props =>{
         if(key === colorType) newSelectedTextColor[colorType] = 4;
         else newSelectedTextColor[key] = 0;
     }
-    //console.log('PageColor of actionType',colorType);
+   
     DISPATCH({
         type: UPDATE_TEXT_COLOR,
         selectedTextColor: newSelectedTextColor
@@ -201,9 +196,6 @@ const EditSettingsScreen = props =>{
             break;
         }
     }
-
-    //console.log('selectedPageColor',selectedPageColor);
-    //console.log('selectedTextColor',selectedTextColor);
 
 
    const allPageSettings = {
