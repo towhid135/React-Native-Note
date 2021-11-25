@@ -8,6 +8,13 @@ export default {
     MontserratExtraLightItalic: 'MontserratExtraLightItalic',
     MontserratItalic: 'MontserratItalic',
     MontserratLight: 'MontserratLight',
+    Comforter:'Comforter',
+    Inconsolata: 'Inconsolata',
+    BebasNeue: 'BebasNeue',
+    JosefinSans: 'JosefinSans',
+    DancingScript: 'DancingScript',
+    Pacifico: 'Pacifico',
+    IndieFlower: 'IndieFlower',
     BenSenHandwriting:'বেনসেন',
     ChandrabatiOMJ:'চন্দ্রাবতী',
     Korotoa: 'করতোয়া'
