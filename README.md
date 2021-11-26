@@ -1,7 +1,14 @@
+# Note Book
 
-# Project Title
-
-A brief description of what this project does and who it's for
+This notebook is a cross-platform application. It was built with the help of
+react-native and expo. Features of this application are given below:
+* User's can register with a **valid** Gmail.
+* Only **verified** users can log in.
+* User's can retrieve a forgotten password.
+* User's can **add** any note and select **page color**, **text color** and **font style**.
+* Saved notes will be stored in the **firebase**.
+* User's can **view**, **edit** and **delete** the saved notes.
+* User's will get a nice user experience.
 
 
 ## Screenshots
