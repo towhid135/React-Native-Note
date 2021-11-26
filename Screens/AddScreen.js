@@ -185,7 +185,7 @@ const AddScreen = props => {
                           selectedButton
                         )
                     },
-                    title: 'Your Task'
+                    title: 'Your Note'
                 })
             })
     }
@@ -212,7 +212,8 @@ const AddScreen = props => {
                           />
                       </HeaderButtons>
                     )
-                }
+                },
+                title: 'Edit Note'
             })
         })
     }
