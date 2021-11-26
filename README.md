@@ -11,6 +11,7 @@ Login             |  Login Indicator          | Register
 ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Login.jpg)  |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Spinner-Login.jpg) |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Register.jpg)
 
 Forgot pass             |  Notes Loading          | Empty
+:-------------------------:|:-------------------------:|:-------------------------
 ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Forgot%20pass.jpg) |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Notes%20Loading.jpg) |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Initial%20View.jpg)
 
     Saved Notes     |  Add          | Note Settings
