@@ -18,10 +18,6 @@ Saved Notes     |  Add          | Note Settings
 :-------------------------:|:-------------------------:|:-------------------------
 ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Home.jpg)  |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Add.jpg) |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Note%20Settings.jpg)
 
-View Note             |  Edit Note          | Edit Settings
-:-------------------------:|:-------------------------:|:-------------------------
-![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Note-View.jpg)  |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Edit%20Note.jpg) |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Edit%20Settings.jpg)
-
-Drawer Nav
-:-------------------------
-![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Drawer.jpg) 
+View Note             |  Edit Note          | Edit Settings |   Drawer Nav
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------
+![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Note-View.jpg)  |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Edit%20Note.jpg) |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Edit%20Settings.jpg) | ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Drawer.jpg) 
