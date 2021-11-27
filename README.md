@@ -29,7 +29,7 @@ The objective of this project is to learn:
 
 ## Requirements
 * PC have latest **"Node.js"** installed.
-* PC should have android studion or Xcode installed or Should have an android or ios phone installed with expo app.
+* PC should have **android studio** (Windows and Linux) or **Xcode** (macOS) installed or Should have an android or ios phone installed with expo app.
 
 
 ## Installation Process
