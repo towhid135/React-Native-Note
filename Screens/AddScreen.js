@@ -192,7 +192,9 @@ const AddScreen = props => {
 
     else{
         useLayoutEffect(()=>{
-            props.navigation.setOptions({
+            props.navigation.setOptions
+                (
+                {
                 headerRight: () => {
                     return(
                       <HeaderButtons HeaderButtonComponent={CustomHeaderButton} >
@@ -214,7 +216,8 @@ const AddScreen = props => {
                     )
                 },
                 title: 'Edit Note'
-            })
+        }
+            )
         })
     }
 
