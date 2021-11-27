@@ -28,12 +28,16 @@ The objective of this project is to learn:
 * Using different react hooks like: **useState**, **useEffect**, **useLayoutEffect**,**useReducer**, etc.
 
 ## Requirements
-* Device should have latest **"Node.js"** installed.
+* PC have latest **"Node.js"** installed.
+* PC should have android studion or Xcode installed or Should have an android or ios phone installed with expo app.
+
 
 ## Installation Process
 
 * Go inside fireBase>config.js and replace the **"firebaseConfig" object** with yours.
 * Go inside "React-Native-TODO-2" folder using cmd and run the command **"npm install"**.
+* Run the command expo start.
+* Scan the QR code with the expo app.
 
 ## Screenshots
 
