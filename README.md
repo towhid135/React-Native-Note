@@ -28,3 +28,19 @@ Saved Notes     |  Add          | Note Settings
 View Note             |  Edit Note          | Edit Settings |   Drawer Nav
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------
 ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Note-View.jpg)  |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Edit%20Note.jpg) |  ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Edit%20Settings.jpg) | ![](https://github.com/towhid135/React-Native-TODO-2/blob/main/Screenshot/Drawer.jpg) 
+
+## Objective
+The objective of this project is to learn:
+* Creating **funtional component**.
+* Building reusable **custom component**.
+* Using **custom font**.
+* Using **Apploading component**.
+* Using **Activity Indicator**.
+* Using **Firebase** for **Authentication** and **storing** data.
+* **Sing** in and **Sign** up mechanism.
+* **Email verificationa** and **password retrieval**.
+* Email and password **validation** with **regex** and condition.
+* Handling server side response with the help of **Rest API**.
+* Managing **Redux Store** (Creating and managing **reducers** and **dispatching actions**).
+* Using **Redux-Thunk** for returning **async function** from the action creator function.
+* Using different react hooks like: **useState**, **useEffect**, **useLayoutEffect**,**useReducer**, etc.
