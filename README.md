@@ -21,7 +21,7 @@ The objective of this project is to learn:
 * Using **Activity Indicator**.
 * Using **Firebase** for **Authentication** and **storing** data.
 * **Sing in** and **Sign up** mechanism.
-* **Email verificationa** and **password retrieval**.
+* **Email verification** and **password retrieval**.
 * Email and password **validation** with **regex** and condition.
 * Handling server side response with the help of **Rest API**.
 * Managing **Redux Store** (Creating and managing **reducers** and **dispatching actions**).
