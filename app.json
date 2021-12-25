@@ -1,8 +1,10 @@
 {
   "expo": {
-    "name": "TODO",
-    "slug": "TODO",
+    "name": "Note",
+    "slug": "MY-Note",
     "version": "1.0.0",
+    "privacy": "public",
+    "description": "This notebook is a cross-platform application. It was built with the help of react-native and expo",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
