@@ -3,6 +3,7 @@
 This notebook is a cross-platform application. It was built with the help of
 react-native and expo. Features of this application are given below:
 * User's can register with a **valid** Gmail.
+* User's will get a **verification email**.
 * Only **verified** users can log in.
 * User's can retrieve a forgotten password.
 * User's can **add** any note and select **page color**, **text color** and **font style**.
