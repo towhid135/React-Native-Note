@@ -14,8 +14,8 @@ react-native and expo. Features of this application are given below:
 ## Objective
 
 The objective of this project is to learn:
-* Creating **funtional component**.
-* Building reusable **custom component**.
+* Creating **functional components**.
+* Building reusable **custom components**.
 * Using **custom font**.
 * Using **Apploading component**.
 * Using **Activity Indicator**.
