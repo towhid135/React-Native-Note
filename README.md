@@ -23,9 +23,9 @@ The objective of this project is to learn:
 * **Sing in** and **Sign up** mechanism.
 * **Email verification** and **password retrieval**.
 * Email and password **validation** with **regex** and condition.
-* Handling server side response with the help of **Rest API**.
+* Handling server-side response with the help of **Rest API**.
 * Managing **Redux Store** (Creating and managing **reducers** and **dispatching actions**).
-* Using **Redux-Thunk** for returning **async function** from the action creator function.
+* Using **Redux-Thunk** for returning the **async function** from the action creator function.
 * Using different react hooks like: **useState**, **useEffect**, **useLayoutEffect**,**useReducer**, etc.
 
 ## Requirements
